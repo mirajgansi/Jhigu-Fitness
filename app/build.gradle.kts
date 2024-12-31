@@ -4,17 +4,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.jhigu_fitness"
-    compileSdk = 34
+    namespace = "com.example.jhigu_fitness" // Replace with your app's package name
+    compileSdkVersion(35)
 
     defaultConfig {
-        applicationId = "com.example.jhigu_fitness"
-        minSdk = 25
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        applicationId = "com.example.jhigu_fitness" // Replace with your app's package name
+        minSdkVersion(21)
+        targetSdkVersion(35)
     }
 
     buildTypes {
@@ -26,17 +22,18 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = "11"
     }
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
