@@ -1,5 +1,9 @@
 <resources>
+<<<<<<< HEAD
     <string name="app_name">JHIGU-FITNESS</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+=======
+    <string name="app_name">Jhigu Fitness</string>
+>>>>>>> 0867dbfb7ba5cd9f3800a264292e7f08e0891759
 </resources>

@@ -19,6 +19,10 @@ dependencyResolutionManagement {
     }
 }
 
+<<<<<<< HEAD
 rootProject.name = "JHIGU-FITNESS"
+=======
+rootProject.name = "Jhigu Fitness"
+>>>>>>> 0867dbfb7ba5cd9f3800a264292e7f08e0891759
 include(":app")
  

@@ -1,6 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
+<<<<<<< HEAD
     <style name="Base.Theme.JHIGUFITNESS" parent="Theme.Material3.DayNight.NoActionBar">
+=======
+    <style name="Base.Theme.JhiguFitness" parent="Theme.Material3.DayNight.NoActionBar">
+>>>>>>> 0867dbfb7ba5cd9f3800a264292e7f08e0891759
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>

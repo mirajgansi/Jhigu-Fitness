@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.AddProductActivity">
+
+
+   <EditText
+       android:hint="Enter product name"
+       android:id="@+id/pName"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"/>
+
+    <EditText
+        android:hint="Enter product price"
+        android:id="@+id/pPrice"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:hint="enter product desription"
+        android:id="@+id/pDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnaddProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="add product"/>
+
+
+</LinearLayout>

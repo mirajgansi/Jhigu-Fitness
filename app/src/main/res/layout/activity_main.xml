@@ -5,7 +5,11 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     tools:context=".ui.activity.MainActivity">
+=======
+    tools:context=".MainActivity">
+>>>>>>> 0867dbfb7ba5cd9f3800a264292e7f08e0891759
 
     <TextView
         android:layout_width="wrap_content"
