@@ -1,4 +1,4 @@
-package com.example.jhigu_fitness.ui.activity.ui.fragment
+package com.example.jhigu_fitness.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

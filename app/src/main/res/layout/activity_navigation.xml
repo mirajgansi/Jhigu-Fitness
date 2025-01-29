@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.ui.activity.NavigationActivity">
+    tools:context=".ui.activity.NavigationActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
@@ -268,7 +268,7 @@
                 android:layout_width="350sp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="84dp"
-                android:background="@color/light_grey"
+                android:background="@color/light_gray"
                 android:padding="16dp"
                 android:text="Upper body training\nBeginner"
                 android:textColor="#000000"

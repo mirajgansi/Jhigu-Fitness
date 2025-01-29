@@ -1,4 +1,4 @@
-package com.example.jhigu_fitness.ui.activity.ui.activity
+package com.example.jhigu_fitness.ui.activity
 
 //import android.app.Activity
 import android.os.Bundle
@@ -11,8 +11,10 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.jhigu_fitness.R
 import com.example.jhigu_fitness.databinding.ActivityNavigationBinding
-import com.example.jhigu_fitness.ui.activity.ui.fragment.HomeFragment
-import com.example.jhigu_fitness.ui.activity.ui.fragment.SettingFragment
+import com.example.jhigu_fitness.ui.fragment.HomeFragment
+import com.example.jhigu_fitness.ui.fragment.SettingFragment
+import com.example.jhigu_fitness.ui.fragment.WorkoutFragment
+
 
 
 class NavigationActivity : AppCompatActivity() {
@@ -28,9 +30,11 @@ class NavigationActivity : AppCompatActivity() {
         replaceFragment(HomeFragment())
         binding.bottomNavigationView.setOnItemSelectedListener {menu->
             when(menu.itemId){
-                R.id.navHome -> replaceFragment(HomeFragment())
-                R.id.navSetting -> replaceFragment(SettingFragment())
-                R.id.navPerson -> replaceFragment(HomeFragment())
+                R.id.nav_home -> replaceFragment(HomeFragment())
+                R.id.nav_settings -> replaceFragment(SettingFragment())
+                R.id.nav_profile -> replaceFragment(HomeFragment())
+                R.id.nav_workouts -> replaceFragment(HomeFragment())
+
 
                 else -> {}
             }
