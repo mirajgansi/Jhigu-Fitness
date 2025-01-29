@@ -5,7 +5,10 @@ plugins {
 
 android {
     namespace = "com.example.jhigu_fitness"
-    compileSdk = 34
+    compileSdk = 35
+    buildFeatures {
+        viewBinding = true
+    }
 
     defaultConfig {
         applicationId = "com.example.jhigu_fitness"
