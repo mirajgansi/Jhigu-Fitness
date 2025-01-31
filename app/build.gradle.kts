@@ -8,12 +8,12 @@ android {
         viewBinding = true
     }
     namespace = "com.example.jhigu_fitness" // Replace with your app's package name
-    compileSdkVersion(33)
+    compileSdkVersion(34)
 
     defaultConfig {
         applicationId = "com.example.jhigu_fitness" // Replace with your app's package name
         minSdkVersion(23)
-        targetSdkVersion(33)
+        targetSdkVersion(34)
     }
 
     buildTypes {
