@@ -9,6 +9,7 @@
     android:background="@android:color/background_dark"
     android:padding="16dp">
 
+
     <!-- Title -->
     <ImageView
         android:id="@+id/backArrow"

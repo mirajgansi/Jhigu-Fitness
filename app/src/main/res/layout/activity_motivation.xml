@@ -4,8 +4,12 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     android:background="@color/back"
     android:orientation="vertical">
+=======
+    tools:context=".ui.activity.ui.activity.MotivationActivity">
+>>>>>>> 9871812bee43429f38308e4d57b7b7ce6982666c
 
     <!-- Back Button -->
     <ImageView

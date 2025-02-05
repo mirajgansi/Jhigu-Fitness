@@ -1,4 +1,4 @@
-package com.example.jhigu_fitness.ui.activity
+package com.example.jhigu_fitness.ui.activity.ui.activity
 
 import android.animation.Animator
 import android.animation.ObjectAnimator

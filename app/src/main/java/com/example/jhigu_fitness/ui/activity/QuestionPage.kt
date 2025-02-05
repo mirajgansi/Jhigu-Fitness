@@ -16,29 +16,29 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.jhigu_fitness.R
 
 class QuestionPage : AppCompatActivity() {
-        private lateinit var buttonNext: Button
-        private lateinit var progressBar: ProgressBar
-        private lateinit var options: List<Button>
-        private var selectedOption: Button? = null
+    private lateinit var buttonNext: Button
+    private lateinit var progressBar: ProgressBar
+    private lateinit var options: List<Button>
+    private var selectedOption: Button? = null
 
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            setContentView(R.layout.activity_question)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_question)
 
-            // Initialize views
-            buttonNext = findViewById(R.id.buttonNext)
-            progressBar = findViewById(R.id.progressBar)
-            options = listOf(
-                findViewById(R.id.optionBoostEnergy),
-                findViewById(R.id.optionFeelConfident),
-                findViewById(R.id.optionImproveHealth),
-                findViewById(R.id.optionReleaseStress)
-            )
+        // Initialize views
+        buttonNext = findViewById(R.id.buttonNext)
+        progressBar = findViewById(R.id.progressBar)
+        options = listOf(
+            findViewById(R.id.optionBoostEnergy),
+            findViewById(R.id.optionFeelConfident),
+            findViewById(R.id.optionImproveHealth),
+            findViewById(R.id.optionReleaseStress)
+        )
 
-            setupProgressBar()
-            setupOptions()
-            setupNextButton()
-        }
+        setupProgressBar()
+        setupOptions()
+        setupNextButton()
+    }
 
     private fun setupProgressBar() {
         progressBar.max = 100
