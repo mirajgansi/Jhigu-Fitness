@@ -9,11 +9,14 @@
 
     <!-- Back Button -->
     <ImageView
-        android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp" />
+        android:id="@+id/backArrow"
+        android:layout_width="20dp"
+        android:layout_height="25dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:srcCompat="@drawable/backarrow"
+        />
 
     <!-- Title -->
     <TextView
@@ -34,11 +37,15 @@
 
     <!-- Question Text -->
 
-    <ImageView
-        android:id="@+id/imageView"
+    <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="match_parent"
-        android:layout_height="29dp"
-        app:srcCompat="@drawable/bar" />
+        android:layout_height="8dp"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+        android:progress="50"
+        android:max="100"
+        android:layout_marginBottom="16dp"/>
+
 
     <TextView
         android:id="@+id/questionText"
@@ -58,7 +65,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/red"
+        android:backgroundTint="@color/black"
         android:text="Feel Confident"
         android:textColor="@color/white" />
 
@@ -80,7 +87,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/red"
+        android:backgroundTint="@color/black"
         android:text="Boost Energy"
         android:textColor="@color/white" />
 

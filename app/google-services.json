@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "481963575612",
+    "firebase_url": "https://jhigu-fitness-default-rtdb.firebaseio.com",
+    "project_id": "jhigu-fitness",
+    "storage_bucket": "jhigu-fitness.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481963575612:android:a6e883d8b3e9832df3f639",
+        "android_client_info": {
+          "package_name": "com.example.jhigu_fitness"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqlquNoEJWD-qrGKTq3Fb063FIwZIYzeY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
