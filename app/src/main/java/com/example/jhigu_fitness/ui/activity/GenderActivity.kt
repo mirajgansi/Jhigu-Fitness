@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import com.example.jhigu_fitness.R
+import com.example.jhigu_fitness.ui.activity.GoalActivity
 
 
 class GenderActivity : AppCompatActivity() {

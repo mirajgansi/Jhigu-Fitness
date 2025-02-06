@@ -1,9 +1,46 @@
 package com.example.jhigu_fitness.repository
 
+import com.example.jhigu_fitness.model.UserModel
+import com.google.firebase.auth.FirebaseUser
+
 interface UserRepository {
-    fun login(email:String,password:String,callBack:(Boolean,String,Int)->Unit)
-    fun regsister(email:String,password:String,callBack:(Boolean,String,String)->Unit)
-    fun forgetpassword(email:String,callBack:(Boolean,String,Int)->Unit)
-    fun addUserTodatabase(UserId:String,UserModel:String,callBack:(Boolean,String,Int)->Unit)
+
+//    {
+//    success: true
+//    message: Login success
+//    }
+
+    fun login(
+        email: String, password: String,
+        callback: (Boolean, String) -> Unit
+    )
+
+    fun register(
+        email: String, password: String,
+        callback: (Boolean, String, String) -> Unit
+    )
+
+    fun forgetPassword(email: String, callback: (Boolean, String) -> Unit)
+
+    fun addUserToDatabase(
+        userId: String, userModel: UserModel,
+        callback: (Boolean, String) -> Unit
+    )
+
+
+    fun logout(callback: (Boolean, String) -> Unit)
+
+    fun editProfile(
+        userId: String, data: MutableMap<String, Any>,
+        callback: (Boolean, String) -> Unit
+    )
+
+    fun getCurrentUser(): FirebaseUser?
+
+    fun getUserFromDatabase(
+        userId: String,
+        callback: (UserModel?, Boolean, String) -> Unit
+    )
+
 
 }

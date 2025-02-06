@@ -1,4 +1,5 @@
-package com.example.jhigu_fitness.ui.activity
+
+package com.example.jhigu_fitness.ui.activity.ui.activity
 
 //import android.app.Activity
 import android.os.Bundle
@@ -13,13 +14,20 @@ import com.example.jhigu_fitness.R
 import com.example.jhigu_fitness.databinding.ActivityNavigationBinding
 import com.example.jhigu_fitness.ui.fragment.HomeFragment
 import com.example.jhigu_fitness.ui.fragment.SettingFragment
-import com.example.jhigu_fitness.ui.fragment.WorkoutFragment
-
 
 
 class NavigationActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityNavigationBinding
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentManager : FragmentManager = supportFragmentManager
+
+        val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
+
+        fragmentTransaction.replace(R.id.frameLayout,fragment)
+        fragmentTransaction.commit()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -28,13 +36,12 @@ class NavigationActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         replaceFragment(HomeFragment())
-        binding.bottomNavigationView.setOnItemSelectedListener {menu->
+        binding.buttomNavigation.setOnItemSelectedListener {menu->
             when(menu.itemId){
                 R.id.nav_home -> replaceFragment(HomeFragment())
                 R.id.nav_settings -> replaceFragment(SettingFragment())
-                R.id.nav_profile -> replaceFragment(HomeFragment())
                 R.id.nav_workouts -> replaceFragment(HomeFragment())
-
+                R.id.nav_profile -> replaceFragment(HomeFragment())
 
                 else -> {}
             }
@@ -49,13 +56,5 @@ class NavigationActivity : AppCompatActivity() {
         }
     }
 
-    private fun replaceFragment(fragment: Fragment) {
-        val fragmentManager : FragmentManager = supportFragmentManager
-
-        val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
-
-        fragmentTransaction.replace(R.id.Framecontent,fragment)
-        fragmentTransaction.commit()
-    }
 
 }

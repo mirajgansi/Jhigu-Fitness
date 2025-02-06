@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.jhigu_fitness.R
+import com.example.jhigu_fitness.ui.activity.GoalActivity
 
 class MotivationActivity : AppCompatActivity() {
 
