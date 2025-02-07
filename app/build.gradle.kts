@@ -5,6 +5,7 @@ plugins {
 }
 
 android {
+<<<<<<< HEAD
     namespace = "com.example.jhigu_fitness" // Replace with your app's package name
     compileSdkVersion(35)
 
@@ -12,6 +13,18 @@ android {
         applicationId = "com.example.jhigu_fitness" // Replace with your app's package name
         minSdkVersion(21)
         targetSdkVersion(35)
+=======
+    buildFeatures{
+        viewBinding = true
+    }
+    namespace = "com.example.jhigu_fitness" // Replace with your app's package name
+    compileSdkVersion(34)
+
+    defaultConfig {
+        applicationId = "com.example.jhigu_fitness" // Replace with your app's package name
+        minSdkVersion(23)
+        targetSdkVersion(34)
+>>>>>>> subim
     }
 
     buildTypes {
