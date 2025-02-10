@@ -8,6 +8,7 @@
 
     <androidx.cardview.widget.CardView
         app:cardCornerRadius="12dp"
+        android:id="@+id/cardWorkout"
         android:layout_margin="12dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

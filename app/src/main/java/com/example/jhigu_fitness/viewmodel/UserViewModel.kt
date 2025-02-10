@@ -2,8 +2,8 @@ package com.example.jhigu_fitness.viewmodel
 
 
 import androidx.lifecycle.MutableLiveData
-import com.example.c35d_crud.model.UserModel
-import com.example.c35d_crud.repository.UserRepository
+import com.example.jhigu_fitness.model.UserModel
+import com.example.jhigu_fitness.repository.UserRepository
 import com.google.firebase.auth.FirebaseUser
 
 class UserViewModel(val repo : UserRepository) {

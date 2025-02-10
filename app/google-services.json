@@ -1,25 +1,14 @@
 {
   "project_info": {
-<<<<<<< HEAD
     "project_number": "481963575612",
     "firebase_url": "https://jhigu-fitness-default-rtdb.firebaseio.com",
     "project_id": "jhigu-fitness",
     "storage_bucket": "jhigu-fitness.firebasestorage.app"
-=======
-    "project_number": "865398191308",
-    "firebase_url": "https://jhigufitnessdemo-default-rtdb.firebaseio.com",
-    "project_id": "jhigufitnessdemo",
-    "storage_bucket": "jhigufitnessdemo.firebasestorage.app"
->>>>>>> 9871812bee43429f38308e4d57b7b7ce6982666c
   },
   "client": [
     {
       "client_info": {
-<<<<<<< HEAD
         "mobilesdk_app_id": "1:481963575612:android:a6e883d8b3e9832df3f639",
-=======
-        "mobilesdk_app_id": "1:865398191308:android:944ad0347a2cea95f0be69",
->>>>>>> 9871812bee43429f38308e4d57b7b7ce6982666c
         "android_client_info": {
           "package_name": "com.example.jhigu_fitness"
         }
@@ -27,11 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-<<<<<<< HEAD
           "current_key": "AIzaSyCqlquNoEJWD-qrGKTq3Fb063FIwZIYzeY"
-=======
-          "current_key": "AIzaSyBT12VZY5VUeUFbJArv2qBbU7FY1AlXzfo"
->>>>>>> 9871812bee43429f38308e4d57b7b7ce6982666c
         }
       ],
       "services": {

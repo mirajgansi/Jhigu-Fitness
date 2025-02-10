@@ -8,10 +8,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jhigu_fitness.R
 import com.example.jhigu_fitness.model.ProductModel
 import com.example.jhigu_fitness.ui.activity.UpdateWorkoutActivity
+import com.example.jhigu_fitness.ui.fragment.ExerciseFragment
+import com.example.jhigu_fitness.ui.fragment.WorkoutFragment
+//import com.example.jhigu_fitness.ui.activity.WorkOutDetailActivity
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.lang.Exception
@@ -24,6 +28,7 @@ class ProductAdapter (var context: Context,
 
     class ProductViewHolder(itemView: View)
         : RecyclerView.ViewHolder(itemView){
+        val cardView : CardView = itemView.findViewById(R.id.cardWorkout)
         val imageView : ImageView = itemView.findViewById(R.id.getImage)
         val loading : ProgressBar = itemView.findViewById(R.id.progressBar2)
         var btnEdit : TextView = itemView.findViewById(R.id.btnEdit)
@@ -55,6 +60,12 @@ class ProductAdapter (var context: Context,
             context.startActivity(intent)
         }
 
+        holder.cardView.setOnClickListener {
+            val intent = Intent(context,ExerciseFragment::class.java)
+            intent.putExtra("id",data[position].productId)
+            context.startActivity(intent)
+        }
+
         Picasso.get().load(data[position].imageUrl).into(holder.imageView, object : Callback {
             override fun onSuccess() {
                 holder.loading.visibility = View.GONE
@@ -65,9 +76,6 @@ class ProductAdapter (var context: Context,
 
         })
     }
-
-
-
     fun updateData(products: List<ProductModel>){
         data.clear()
         data.addAll(products)

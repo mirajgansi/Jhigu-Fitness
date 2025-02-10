@@ -91,7 +91,7 @@ class AddWorkoutActivity : AppCompatActivity() {
             productDesc, productPrice, url
         )
 
-        productViewModel.addProduct(model) { success, message ->
+        productViewModel.addWorkout(model) { success, message ->
             if (success) {
                 Toast.makeText(
                     this@AddWorkoutActivity,
