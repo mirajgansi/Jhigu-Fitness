@@ -31,4 +31,9 @@
     <color name="dark_purple">#4B0082</color>
     <color name="light_yellow">#FFFFE0</color>
     <color name="dark_orange">#FF8C00</color>
+    <color name="background_color">#FFFFFFFF</color> <!-- Background color -->
+    <color name="text_primary">#FF000000</color> <!-- Primary text color -->
+    <color name="text_secondary">#FF666666</color> <!-- Secondary text color -->
+    <color name="button_color">#FF6200EE</color> <!-- Button background color -->
+
 </resources>

@@ -18,20 +18,22 @@
         app:layout_constraintStart_toStartOf="parent"
         />
 
-<!--    <FrameLayout-->
-<!--        android:id="@+id/Framecontent"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginStart="1dp"-->
-<!--        android:layout_marginTop="1dp"-->
-<!--        android:layout_marginEnd="1dp"-->
-<!--        android:layout_marginBottom="1dp"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="1.0"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="1.0">-->
+
+
+    <FrameLayout
+        android:id="@+id/Framecontent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"/>
 
         <!-- Best workouts training text -->
 
@@ -203,116 +205,6 @@
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toBottomOf="@id/lower_body_training" />-->
 
-    <FrameLayout
-        android:id="@+id/Framecontent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#1F1F1F">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="648dp">
-
-            <!-- Title -->
-
-            <!-- Subtitle -->
-
-            <!-- Profile Image -->
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="64dp"
-                android:text="Jhigu Fitness"
-                android:textColor="#FF4B4B"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/subtitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Best workouts training\nfor you"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.07"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/title" />
-
-            <ImageView
-                android:id="@+id/profileImage"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:contentDescription="Profile Image"
-                android:src="@drawable/baseline_person_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <!-- Upper Body Training Card -->
-
-            <!-- Lower Body Training Card -->
-
-            <!-- Abs Training Card -->
-
-            <TextView
-                android:id="@+id/upper_body_training"
-                android:layout_width="350sp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="84dp"
-                android:background="@color/light_grey"
-                android:padding="16dp"
-                android:text="Upper body training\nBeginner"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.311"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/subtitle" />
-
-            <TextView
-                android:id="@+id/lower_body_training"
-                android:layout_width="350sp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:background="@color/maroon"
-                android:padding="16dp"
-                android:text="Lower body training\nBeginner"
-
-                android:textColor="#000000"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.311"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/upper_body_training" />
-
-            <TextView
-                android:id="@+id/abs_training"
-                android:layout_width="350sp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
-                android:background="@color/green"
-                android:padding="16dp"
-
-                android:text="Abs Training\nBeginner"
-                android:textColor="#000000"
-                android:textSize="16sp"
-
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.311"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/lower_body_training" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
