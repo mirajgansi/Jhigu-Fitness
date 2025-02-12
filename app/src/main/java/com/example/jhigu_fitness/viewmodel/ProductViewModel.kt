@@ -60,13 +60,24 @@ class ProductViewModel (val repo : ProductRepository) {
         _loading.value = true
         repo.getAllWorkout { products, success, message ->
             if (success) {
-                _allWorkout.value = products
-            } else {
-                Log.e("ProductViewModel", "Failed to get all products: $message")
+                _allWorkout.postValue(products ?: emptyList())
             }
             _loading.value = false
         }
     }
+
+    val filteredWorkout = MutableLiveData<List<ProductModel>>()
+
+    fun getWorkoutByCategory(category: String) {
+        repo.getWorkoutByCategory(category) { workouts, success, _ ->
+            if (success) {
+                filteredWorkout.postValue(workouts ?: emptyList())
+            } else {
+                filteredWorkout.postValue(emptyList()) // Ensures RecyclerView clears on failure
+            }
+        }
+    }
+
 
     fun uploadImage(context: Context, imageUri: Uri, callback: (String?) -> Unit) {
         if (imageUri == null) {

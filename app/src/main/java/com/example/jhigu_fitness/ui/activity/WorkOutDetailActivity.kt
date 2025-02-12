@@ -1,22 +1,22 @@
-//package com.example.jhigu_fitness.ui.activity
-//
-//import android.os.Bundle
-//import android.widget.Toast
-//import androidx.activity.enableEdgeToEdge
-//import androidx.appcompat.app.AppCompatActivity
-//import androidx.lifecycle.ViewModelProvider
-//import androidx.core.view.ViewCompat
-//import androidx.core.view.WindowInsetsCompat
-//import com.example.jhigu_fitness.R
-//import com.example.jhigu_fitness.databinding.ActivityWorkOutDetailBinding
-//import com.example.jhigu_fitness.repository.ProductRepositoryImp
-//import com.example.jhigu_fitness.viewmodel.ProductViewModel
-//
-//class WorkOutDetailActivity : AppCompatActivity() {
-//    private lateinit var binding: ActivityWorkOutDetailBinding
-//    private lateinit var productViewModel: ProductViewModel
-//    private var getWorkoutById: Int = -1  // ID to fetch the correct workout
-//
+package com.example.jhigu_fitness.ui.activity
+
+import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.example.jhigu_fitness.R
+import com.example.jhigu_fitness.databinding.ActivityWorkOutDetailBinding
+import com.example.jhigu_fitness.repository.ProductRepositoryImp
+import com.example.jhigu_fitness.viewmodel.ProductViewModel
+
+class WorkOutDetailActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityWorkOutDetailBinding
+    private lateinit var productViewModel: ProductViewModel
+    private var getWorkoutById: Int = -1  // ID to fetch the correct workout
+
 //    override fun onCreate(savedInstanceState: Bundle?) {
 //        super.onCreate(savedInstanceState)
 //        enableEdgeToEdge()
@@ -61,5 +61,5 @@
 //            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
 //            insets
 //        }
-//    }
-//}
+    }
+

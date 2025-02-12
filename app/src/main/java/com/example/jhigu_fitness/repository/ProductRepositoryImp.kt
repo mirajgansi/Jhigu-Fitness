@@ -97,6 +97,32 @@ class ProductRepositoryImp: ProductRepository{
         })
     }
 
+    override fun getWorkoutByCategory(
+        category: String,
+        callback: (List<ProductModel>?, Boolean, String) -> Unit
+    ) {
+        ref.orderByChild("category").equalTo(category.trim()) // Trim ensures no extra spaces
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val workoutList = mutableListOf<ProductModel>()
+                    for (eachData in snapshot.children) {
+                        val workout = eachData.getValue(ProductModel::class.java)
+                        if (workout != null) {
+                            workoutList.add(workout)
+                        }
+                    }
+                    callback(workoutList, true, "Filtered workouts fetched successfully")
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    callback(null, false, "Failed to fetch workouts: ${error.message}")
+                }
+            })
+    }
+
+
+
+
     private val cloudinary = Cloudinary(
         mapOf(
             "cloud_name" to "dkscpr3wa",

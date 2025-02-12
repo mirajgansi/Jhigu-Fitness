@@ -13,9 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.jhigu_fitness.R
 import com.example.jhigu_fitness.model.ProductModel
 import com.example.jhigu_fitness.ui.activity.UpdateWorkoutActivity
-import com.example.jhigu_fitness.ui.fragment.ExerciseFragment
-import com.example.jhigu_fitness.ui.fragment.WorkoutFragment
-//import com.example.jhigu_fitness.ui.activity.WorkOutDetailActivity
+import com.example.jhigu_fitness.ui.activity.WorkoutDashboard
+import com.example.jhigu_fitness.ui.fragment.WorkoutDashboardFragment
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.lang.Exception
@@ -53,29 +52,38 @@ class ProductAdapter (var context: Context,
         holder.productPrice.text = data[position].price.toString()
         holder.productDesc.text = data[position].productDesc
 
-
         holder.btnEdit.setOnClickListener {
-            val intent = Intent(context,UpdateWorkoutActivity::class.java)
-            intent.putExtra("products",data[position].productId)
+            val intent = Intent(context, UpdateWorkoutActivity::class.java)
+            intent.putExtra("products", data[position].productId)
             context.startActivity(intent)
         }
 
         holder.cardView.setOnClickListener {
-            val intent = Intent(context,ExerciseFragment::class.java)
-            intent.putExtra("id",data[position].productId)
+            val intent = Intent(context, WorkoutDashboard::class.java)
+            intent.putExtra("id", data[position].productId)
             context.startActivity(intent)
         }
 
-        Picasso.get().load(data[position].imageUrl).into(holder.imageView, object : Callback {
-            override fun onSuccess() {
-                holder.loading.visibility = View.GONE
-            }
+        val imageUrl = data[position].imageUrl
+        // Check if the URL is valid (not empty or null)
+        if (!imageUrl.isNullOrEmpty()) {
+            Picasso.get().load(imageUrl).into(holder.imageView, object : Callback {
+                override fun onSuccess() {
+                    holder.loading.visibility = View.GONE
+                }
 
-            override fun onError(e: Exception?) {
-            }
-
-        })
+                override fun onError(e: Exception?) {
+                    holder.loading.visibility = View.GONE
+                    // Optionally, set a placeholder or handle the error
+                }
+            })
+        } else {
+            // If the image URL is empty, you can load a placeholder image or handle it accordingly
+            Picasso.get().load(R.drawable.placeholder).into(holder.imageView)
+            holder.loading.visibility = View.GONE
+        }
     }
+
     fun updateData(products: List<ProductModel>){
         data.clear()
         data.addAll(products)
