@@ -5,7 +5,12 @@
       <SelectionState runConfigName="WorkoutDasboard">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+<<<<<<< HEAD
       <SelectionState runConfigName="WorkoutDashboard">
+=======
+<<<<<<< HEAD
+      <SelectionState runConfigName="GoalActivity">
+>>>>>>> 4c65aa5bebfa94a1247dbeead7cb246e492e100a
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
       <SelectionState runConfigName="LoginActivity">
@@ -16,6 +21,21 @@
       </SelectionState>
       <SelectionState runConfigName="NavigationActivity">
         <option name="selectionMode" value="DROPDOWN" />
+=======
+      <SelectionState runConfigName="JHIGU-FITNESS">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="ForgetPasswordActivity">
+        <option name="selectionMode" value="DROPDOWN" />
+        <DropdownSelection timestamp="2025-01-03T16:34:40.512645977Z">
+          <Target type="DEFAULT_BOOT">
+            <template>
+              <DeviceId pluginId="FirebaseDirectAccess" type="TEMPLATE" identifier="model_id=OP573DL1/34" />
+            </template>
+          </Target>
+        </DropdownSelection>
+        <DialogSelection />
+>>>>>>> subim
       </SelectionState>
     </selectionStates>
   </component>
