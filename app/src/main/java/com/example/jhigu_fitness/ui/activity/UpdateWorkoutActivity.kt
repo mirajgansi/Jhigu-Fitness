@@ -1,8 +1,6 @@
 package com.example.jhigu_fitness.ui.activity
 
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -10,10 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.jhigu_fitness.R
 import com.example.jhigu_fitness.databinding.ActivityUpdateWorkoutBinding
 import com.example.jhigu_fitness.repository.ProductRepositoryImp
-import com.example.jhigu_fitness.utils.ImageUtlis
-import com.example.jhigu_fitness.utils.LoadingUtlis
 import com.example.jhigu_fitness.viewmodel.ProductViewModel
-import com.squareup.picasso.Picasso
 
 class UpdateWorkoutActivity : AppCompatActivity() {
     lateinit var binding: ActivityUpdateWorkoutBinding

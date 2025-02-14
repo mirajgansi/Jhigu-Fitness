@@ -8,54 +8,49 @@ import androidx.lifecycle.ViewModel
 import com.example.jhigu_fitness.model.ExerciseModel
 import com.example.jhigu_fitness.repository.ExerciseRepository
 
-class ExerciseViewModel(private val repo: ExerciseRepository): ViewModel() {
-
-    private val _exercise = MutableLiveData<ExerciseModel?>()
-    val exercise: LiveData<ExerciseModel?> get() = _exercise
-
-    private val _allExercise = MutableLiveData<List<ExerciseModel>?>()
-    val allExercise: LiveData<List<ExerciseModel>?> get() = _allExercise
-
-    private val _loading = MutableLiveData<Boolean>()
-    val loading: LiveData<Boolean> get() = _loading
+class ExerciseViewModel(val repo: ExerciseRepository) : ViewModel() {
 
     fun addExercise(exerciseModel: ExerciseModel, callback: (Boolean, String) -> Unit) {
         repo.addExercise(exerciseModel, callback)
     }
 
-    fun updateExercise(
-        productId: String,
-        data: MutableMap<String, Any>,
-        callback: (Boolean, String) -> Unit
-    ) {
-        repo.updateExercise(productId, data, callback)
+    fun updateExercise(exerciseId: String, data: MutableMap<String, Any>, callback: (Boolean, String) -> Unit) {
+        repo.updateExercise(exerciseId, data, callback)
     }
 
-    fun deleteExercise(productId: String, callback: (Boolean, String) -> Unit) {
-        repo.deleteExercise(productId, callback)
+    fun deleteExercise(exerciseId: String, callback: (Boolean, String) -> Unit) {
+        repo.deleteExercise(exerciseId, callback)
     }
 
-    fun getExerciseById(productId: String) {
-        repo.getExerciseById(productId) { exercise, success, _ ->
+    private val _exercise = MutableLiveData<ExerciseModel?>()
+    val exercise: LiveData<ExerciseModel?> get() = _exercise
+
+    private val _allExercise = MutableLiveData<List<ExerciseModel>?>()
+    val allExercise: LiveData<List<ExerciseModel>?> = _allExercise
+
+    private val _loadingState = MutableLiveData<Boolean>()
+    val loadingState: LiveData<Boolean> get() = _loadingState
+
+    fun getExerciseById(exerciseId: String) {
+        repo.getExerciseById(exerciseId) { exercise, success, _ ->
             if (success) {
                 _exercise.value = exercise
             }
         }
     }
 
-    fun getAllExercise() {
-        _loading.value = true
-        repo.getAllExercise { exercise, success, _ ->
+    fun fetchAllExercises() {  // ✅ Renamed function
+        _loadingState.value = true
+        repo.getAllExercise { exercises, success, _ ->
             if (success) {
-                _allExercise.postValue(exercise ?: emptyList())
+                _allExercise.value = exercises
             }
-            _loading.value = false
+            _loadingState.value = false
         }
     }
 
+
     fun uploadImage(context: Context, imageUri: Uri, callback: (String?) -> Unit) {
-        repo.uploadImage(context, imageUri) { url ->
-            callback(url ?: "Failed to upload image")
-        }
+        repo.uploadImage(context, imageUri, callback)
     }
 }

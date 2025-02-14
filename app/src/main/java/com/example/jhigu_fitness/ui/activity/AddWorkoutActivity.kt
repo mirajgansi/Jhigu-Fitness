@@ -13,7 +13,7 @@ import com.example.jhigu_fitness.databinding.ActivityAddWorkoutBinding
 import com.example.jhigu_fitness.model.ProductModel
 import com.example.jhigu_fitness.repository.ProductRepositoryImp
 import com.example.jhigu_fitness.utils.ImageUtlis
-import com.example.jhigu_fitness.utils.LoadingUtlis
+import com.example.jhigu_fitness.utils.LoadingUtils
 import com.example.jhigu_fitness.viewmodel.ProductViewModel
 import com.squareup.picasso.Picasso
 
@@ -22,7 +22,7 @@ class AddWorkoutActivity : AppCompatActivity() {
 
     lateinit var productViewModel: ProductViewModel
 
-    lateinit var loadingUtils: LoadingUtlis
+    lateinit var loadingUtils: LoadingUtils
 
     lateinit var imageUtils: ImageUtlis
 
@@ -37,7 +37,7 @@ class AddWorkoutActivity : AppCompatActivity() {
 
         imageUtils = ImageUtlis(this)
 
-        loadingUtils = LoadingUtlis(this)
+        loadingUtils = LoadingUtils(this)
         val repo = ProductRepositoryImp()
         productViewModel = ProductViewModel(repo)
 

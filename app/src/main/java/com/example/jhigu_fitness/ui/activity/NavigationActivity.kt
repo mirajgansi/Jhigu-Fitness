@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.jhigu_fitness.R
 import com.example.jhigu_fitness.databinding.ActivityNavigationBinding
+import com.example.jhigu_fitness.ui.activity.WorkoutDashboard
 import com.example.jhigu_fitness.ui.fragment.HomeFragment
 import com.example.jhigu_fitness.ui.fragment.SettingFragment
 import com.example.jhigu_fitness.ui.fragment.WorkoutDashboardFragment

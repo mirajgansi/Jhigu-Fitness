@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.provider.OpenableColumns
+import android.util.Log
 import com.cloudinary.Cloudinary
 import com.cloudinary.utils.ObjectUtils
 import com.example.jhigu_fitness.model.ExerciseModel
@@ -21,21 +22,30 @@ class ExerciseRepositoryImp: ExerciseRepository {
     val database: FirebaseDatabase = FirebaseDatabase.getInstance()
 
     val ref: DatabaseReference = database.reference
-        .child("products")
+        .child("exercises")
 
     override fun addExercise(ExerciseModel: ExerciseModel, callback: (Boolean, String) -> Unit) {
-        var id = ref.push().key.toString()
+        val id = ref.push().key
+        if (id == null) {
+            Log.e("Firebase", "Failed to generate ID")
+            callback(false, "Error generating ID")
+            return
+        }
+
         ExerciseModel.exerciseId = id
+        Log.d("Firebase", "Adding exercise: $ExerciseModel")
 
-        ref.child(id).setValue(ExerciseModel).addOnCompleteListener {
-            if (it.isSuccessful) {
-                callback(true, "Product added successfully")
+        ref.child(id).setValue(ExerciseModel).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Log.d("Firebase", "Exercise added successfully")
+                callback(true, "Exercise added successfully")
             } else {
-                callback(false, "${it.exception?.message}")
-
+                Log.e("Firebase", "Failed to add exercise", task.exception)
+                callback(false, task.exception?.message ?: "Unknown error")
             }
         }
     }
+
 
     override fun updateExercise(
         ExerciseId: String,
