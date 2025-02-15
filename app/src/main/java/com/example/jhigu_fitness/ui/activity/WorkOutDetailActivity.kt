@@ -1,69 +1,55 @@
 package com.example.jhigu_fitness.ui.activity
 
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.widget.Button
-import android.widget.ProgressBar
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.Observer
 import com.example.jhigu_fitness.R
-import com.example.jhigu_fitness.databinding.ActivityWorkOutDetailBinding
-import com.example.jhigu_fitness.repository.ProductRepositoryImp
-import com.example.jhigu_fitness.viewmodel.ProductViewModel
+import com.example.jhigu_fitness.viewmodel.ExerciseViewModel
+import com.squareup.picasso.Picasso
 
 class WorkOutDetailActivity : AppCompatActivity() {
 
+    private lateinit var exerciseNameText: TextView
+    private lateinit var exerciseSetsText: TextView
+    private lateinit var exerciseImage: ImageView
     private lateinit var startButton: Button
-    private lateinit var progressBar: ProgressBar
-    private lateinit var timerText: TextView
-    private var countDownTimer: CountDownTimer? = null
-    private var timeLeftInMillis: Long = 60000 // 60 seconds
+    private lateinit var exerciseViewModel: ExerciseViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_work_out_detail)
 
+        // Initialize views
+        exerciseNameText = findViewById(R.id.ExerciseName)
+        exerciseSetsText = findViewById(R.id.Exercisesets)
+        exerciseImage = findViewById(R.id.imageBrowseExercise)
         startButton = findViewById(R.id.startButton)
-        progressBar = findViewById(R.id.progressBar2)
-        timerText = findViewById(R.id.timerText)
 
-        startButton.setOnClickListener {
-            startTimer()
+        // Get the exerciseId passed from the previous activity
+        val exerciseId = intent.getIntExtra("exercise_id", -1)
+        if (exerciseId != -1) {
+            // Initialize ViewModel using ViewModelProvider first
+            exerciseViewModel = ViewModelProvider(this).get(ExerciseViewModel::class.java)
+
+            // Fetch exercise data from database by ID
+            exerciseViewModel.getExerciseById(exerciseId.toString())
+
+            // Observe changes to exercise data
+            exerciseViewModel.exercise.observe(this, Observer { exercise ->
+                exercise?.let {
+                    // Update UI with the fetched exercise data
+                    exerciseNameText.text = exercise.exerciseName
+                    exerciseSetsText.text = "Sets: ${exercise.sets}"
+                    Picasso.get().load(exercise.imageUrl).into(exerciseImage)
+                }
+            })
+        } else {
+            Toast.makeText(this, "Exercise not found!", Toast.LENGTH_SHORT).show()
         }
-    }
-
-    private fun startTimer() {
-        // Cancel previous timer if running
-        countDownTimer?.cancel()
-
-        // Initialize timer
-        countDownTimer = object : CountDownTimer(timeLeftInMillis, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                timeLeftInMillis = millisUntilFinished
-                updateTimerUI()
-            }
-
-            override fun onFinish() {
-                // Timer finished actions
-                timerText.text = "Done!"
-                progressBar.progress = 0
-            }
-        }.start()
-    }
-
-    private fun updateTimerUI() {
-        val seconds = timeLeftInMillis / 1000
-        timerText.text = seconds.toString()
-        progressBar.progress = seconds.toInt()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        countDownTimer?.cancel() // Prevent memory leaks
     }
 }

@@ -16,6 +16,7 @@ import com.example.jhigu_fitness.repository.ExerciseRepositoryImp
 import com.example.jhigu_fitness.utils.ImageUtlis
 import com.example.jhigu_fitness.utils.LoadingUtils
 import com.example.jhigu_fitness.viewmodel.ExerciseViewModel
+import com.example.jhigu_fitness.viewmodel.ProductViewModel
 import com.squareup.picasso.Picasso
 
 class AddExerciseActivity : AppCompatActivity() {
@@ -35,6 +36,7 @@ class AddExerciseActivity : AppCompatActivity() {
         loadingUtils = LoadingUtils(this)
 
         val repo = ExerciseRepositoryImp()
+        exerciseViewModel =ExerciseViewModel(repo)
         imageUtils.registerActivity { url ->
             url?.let {
                 imageUri = it

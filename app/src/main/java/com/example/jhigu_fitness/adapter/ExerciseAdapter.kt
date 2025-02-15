@@ -16,6 +16,7 @@ import com.example.jhigu_fitness.adapter.ProductAdapter.ProductViewHolder
 import com.example.jhigu_fitness.databinding.SampleWorkoutDetailBinding
 import com.example.jhigu_fitness.model.ExerciseModel
 import com.example.jhigu_fitness.ui.activity.WorkOutDetailActivity
+//import com.example.jhigu_fitness.ui.activity.WorkOutDetailActivity
 import com.example.jhigu_fitness.ui.activity.WorkoutDashboard
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
@@ -36,12 +37,16 @@ class ExerciseAdapter(
         var exerciseDesc: TextView = itemView.findViewById(R.id.displayExerciseDesc)
 
         init {
-            Log.d("ExerciseViewHolder", "CardView: $cardView, ImageView: $imageView, ProgressBar: $loading")
+            Log.d(
+                "ExerciseViewHolder",
+                "CardView: $cardView, ImageView: $imageView, ProgressBar: $loading"
+            )
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.sample_exercise, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.sample_exercise, parent, false)
         return ExerciseViewHolder(view)
     }
 
@@ -81,6 +86,7 @@ class ExerciseAdapter(
             }
         })
     }
+
     fun updateData(newExercises: List<ExerciseModel>) {
         Log.d("ExerciseAdapter", "Received ${newExercises.size} exercises for update")
         data.clear()
@@ -90,6 +96,6 @@ class ExerciseAdapter(
 
 
     fun getExerciseId(position: Int): String {
-        return data[position].exerciseId
+        return data[position].exerciseId.toString() // Convert the Int to a String
     }
 }
