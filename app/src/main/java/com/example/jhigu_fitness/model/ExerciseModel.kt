@@ -5,12 +5,14 @@ import android.os.Parcelable
 
 data class ExerciseModel(
     var exerciseId: String = "",
+    var productId : String = "",
     var exerciseName: String = "",
     var description: String = "",
     var sets: Int =0,
     var imageUrl: String = ""
 ): Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",

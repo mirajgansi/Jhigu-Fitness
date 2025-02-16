@@ -81,10 +81,12 @@ class AddExerciseActivity : AppCompatActivity() {
         var productPrice = binding.editExercisesets.text.toString().toInt()
         var productDesc = binding.editExerciseDesc.text.toString()
 
-        var model = ExerciseModel(
-            "",
-            productName,
-            productDesc, productPrice, url
+        val model = ExerciseModel(
+             "",
+            exerciseName = productName,
+            description = productDesc,
+            sets = productPrice,
+            imageUrl = url
         )
 
         exerciseViewModel.addExercise(model) { success, message ->

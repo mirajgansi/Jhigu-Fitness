@@ -32,10 +32,12 @@ class ExerciseViewModel(val repo: ExerciseRepository) : ViewModel() {
     val loadingState: LiveData<Boolean> get() = _loadingState
 
     fun getExerciseById(exerciseId: String) {
+        _loadingState.value = true
         repo.getExerciseById(exerciseId) { exercise, success, _ ->
             if (success) {
                 _exercise.value = exercise
             }
+            _loadingState.value = false
         }
     }
 

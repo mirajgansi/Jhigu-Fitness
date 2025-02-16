@@ -24,7 +24,7 @@ interface ExerciseRepository {
     )
 
     fun getExerciseById(
-        productId: String,
+        ExerciseId: String,
         callback: (ExerciseModel?, Boolean, String)
         -> Unit
     )

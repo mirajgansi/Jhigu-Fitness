@@ -12,11 +12,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jhigu_fitness.R
-import com.example.jhigu_fitness.adapter.ProductAdapter.ProductViewHolder
-import com.example.jhigu_fitness.databinding.SampleWorkoutDetailBinding
 import com.example.jhigu_fitness.model.ExerciseModel
-import com.example.jhigu_fitness.ui.activity.WorkOutDetailActivity
-//import com.example.jhigu_fitness.ui.activity.WorkOutDetailActivity
 import com.example.jhigu_fitness.ui.activity.WorkoutDashboard
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
@@ -64,15 +60,18 @@ class ExerciseAdapter(
 
         holder.btnEdit.setOnClickListener {
             val intent = Intent(context, WorkoutDashboard::class.java)
-            intent.putExtra("exercise_id", exercise.exerciseId)
+            intent.putExtra("exercise_id", exercise.exerciseId)  // ✅ Passing ID
             context.startActivity(intent)
         }
+//        holder.cardView.setOnClickListener {
+//            val intent = Intent(context, WorkOutDetailActivity::class.java).apply {
+//                putExtra("exercise_name", exercise.exerciseName)
+//                putExtra("exercise_sets", exercise.sets)
+//                putExtra("exercise_description", exercise.description)
+//            }
+//            context.startActivity(intent)
+//        }
 
-        holder.cardView.setOnClickListener {
-            val intent = Intent(context, WorkOutDetailActivity::class.java)
-            intent.putExtra("exercise_id", exercise.exerciseId)
-            context.startActivity(intent)
-        }
 
         Picasso.get().load(exercise.imageUrl).into(holder.imageView, object : Callback {
             override fun onSuccess() {

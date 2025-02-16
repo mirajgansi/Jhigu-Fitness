@@ -1,55 +1,92 @@
 package com.example.jhigu_fitness.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.view.View
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.jhigu_fitness.R
+import com.example.jhigu_fitness.adapter.ExerciseAdapter
+import com.example.jhigu_fitness.databinding.ActivityWorkOutDetailBinding
+import com.example.jhigu_fitness.repository.ExerciseRepositoryImp
 import com.example.jhigu_fitness.viewmodel.ExerciseViewModel
 import com.squareup.picasso.Picasso
 
 class WorkOutDetailActivity : AppCompatActivity() {
+        lateinit var binding: ActivityWorkOutDetailBinding
 
-    private lateinit var exerciseNameText: TextView
-    private lateinit var exerciseSetsText: TextView
-    private lateinit var exerciseImage: ImageView
-    private lateinit var startButton: Button
-    private lateinit var exerciseViewModel: ExerciseViewModel
+        lateinit var exerciseViewModel: ExerciseViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_work_out_detail)
+        lateinit var exerciseAdapter: ExerciseAdapter
 
-        // Initialize views
-        exerciseNameText = findViewById(R.id.ExerciseName)
-        exerciseSetsText = findViewById(R.id.Exercisesets)
-        exerciseImage = findViewById(R.id.imageBrowseExercise)
-        startButton = findViewById(R.id.startButton)
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            enableEdgeToEdge()
+            binding = ActivityWorkOutDetailBinding.inflate(layoutInflater)
+            setContentView(binding.root)
 
-        // Get the exerciseId passed from the previous activity
-        val exerciseId = intent.getIntExtra("exercise_id", -1)
-        if (exerciseId != -1) {
-            // Initialize ViewModel using ViewModelProvider first
-            exerciseViewModel = ViewModelProvider(this).get(ExerciseViewModel::class.java)
+            exerciseAdapter = ExerciseAdapter(this@WorkOutDetailActivity,
+                ArrayList())
 
-            // Fetch exercise data from database by ID
-            exerciseViewModel.getExerciseById(exerciseId.toString())
+            val repo = ExerciseRepositoryImp()
+            exerciseViewModel = ExerciseViewModel(repo)
 
-            // Observe changes to exercise data
-            exerciseViewModel.exercise.observe(this, Observer { exercise ->
-                exercise?.let {
-                    // Update UI with the fetched exercise data
-                    exerciseNameText.text = exercise.exerciseName
-                    exerciseSetsText.text = "Sets: ${exercise.sets}"
-                    Picasso.get().load(exercise.imageUrl).into(exerciseImage)
+            exerciseViewModel.getExerciseById()
+
+            exerciseViewModel.exercise.observe(this){product->
+                product?.let {
+                    exerciseAdapter.updateData(it)
                 }
+            }
+
+            exerciseViewModel.loadingState.observe(this){loading->
+                if(loading){
+                    binding.progressBar2.visibility = View.VISIBLE
+                }else{
+                    binding.progressBar2.visibility = View.GONE
+                }
+            }
+
+            ItemTouchHelper(object: ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
+                override fun onMove(
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    target: RecyclerView.ViewHolder
+                ): Boolean {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    var productId = exerciseAdapter.getExerciseId(viewHolder.adapterPosition)
+
+                    exerciseViewModel.deleteExercise(productId){
+                            success,message->
+                        if(success){
+                            Toast.makeText(this@WorkOutDetailActivity,
+                                message,Toast.LENGTH_SHORT).show()
+                        }else{
+                            Toast.makeText(this@WorkOutDetailActivity,message,Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+
             })
-        } else {
-            Toast.makeText(this, "Exercise not found!", Toast.LENGTH_SHORT).show()
+
+
+
+            ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+                val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+                insets
+            }
         }
     }
-}
