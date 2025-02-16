@@ -1,65 +1,92 @@
 package com.example.jhigu_fitness.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.jhigu_fitness.R
+import com.example.jhigu_fitness.adapter.ExerciseAdapter
 import com.example.jhigu_fitness.databinding.ActivityWorkOutDetailBinding
-import com.example.jhigu_fitness.repository.ProductRepositoryImp
-import com.example.jhigu_fitness.viewmodel.ProductViewModel
+import com.example.jhigu_fitness.repository.ExerciseRepositoryImp
+import com.example.jhigu_fitness.viewmodel.ExerciseViewModel
+import com.squareup.picasso.Picasso
 
 class WorkOutDetailActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityWorkOutDetailBinding
-    private lateinit var productViewModel: ProductViewModel
-    private var getWorkoutById: Int = -1  // ID to fetch the correct workout
+        lateinit var binding: ActivityWorkOutDetailBinding
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
-//        binding = ActivityWorkOutDetailBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
-//
-//        // Initialize ViewModel
-//        val repo = ProductRepositoryImp()
-//        productViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
-//
-//        // Get Workout ID from Intent
-//        getWorkoutById = intent.getIntExtra("WORKOUT_ID", -1)
-//
-//        if (getWorkoutById == -1) {
-//            Toast.makeText(this, "Invalid Workout ID", Toast.LENGTH_SHORT).show()
-//            finish()
-//            return
-//        }
-//
-//        // Fetch workout details
-//        productViewModel.getWorkoutById(getWorkoutById)
-//
-//        // Observe the workout details
-//        productViewModel.selectedWorkout.observe(this) { workout ->
-//            if (workout != null) {
-//                binding.textViewWorkoutName.text = workout.name
-//                binding.textViewWorkoutDescription.text = workout.description
-//                binding.textViewWorkoutExercises.text = workout.exercises.joinToString("\n")
-//            } else {
-//                Toast.makeText(this, "Workout not found", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//
-//        // Observe loading state
-//        productViewModel.loading.observe(this) { isLoading ->
-//            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-//        }
-//
-//        // Handle system bar insets
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-//            insets
-//        }
+        lateinit var exerciseViewModel: ExerciseViewModel
+
+        lateinit var exerciseAdapter: ExerciseAdapter
+
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            enableEdgeToEdge()
+            binding = ActivityWorkOutDetailBinding.inflate(layoutInflater)
+            setContentView(binding.root)
+
+            exerciseAdapter = ExerciseAdapter(this@WorkOutDetailActivity,
+                ArrayList())
+
+            val repo = ExerciseRepositoryImp()
+            exerciseViewModel = ExerciseViewModel(repo)
+
+            exerciseViewModel.getExerciseById()
+
+            exerciseViewModel.exercise.observe(this){product->
+                product?.let {
+                    exerciseAdapter.updateData(it)
+                }
+            }
+
+            exerciseViewModel.loadingState.observe(this){loading->
+                if(loading){
+                    binding.progressBar2.visibility = View.VISIBLE
+                }else{
+                    binding.progressBar2.visibility = View.GONE
+                }
+            }
+
+            ItemTouchHelper(object: ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
+                override fun onMove(
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    target: RecyclerView.ViewHolder
+                ): Boolean {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    var productId = exerciseAdapter.getExerciseId(viewHolder.adapterPosition)
+
+                    exerciseViewModel.deleteExercise(productId){
+                            success,message->
+                        if(success){
+                            Toast.makeText(this@WorkOutDetailActivity,
+                                message,Toast.LENGTH_SHORT).show()
+                        }else{
+                            Toast.makeText(this@WorkOutDetailActivity,message,Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+
+            })
+
+
+
+            ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+                val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+                insets
+            }
+        }
     }
-

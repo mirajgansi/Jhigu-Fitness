@@ -5,12 +5,8 @@
       <SelectionState runConfigName="WorkoutDasboard">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-<<<<<<< HEAD
       <SelectionState runConfigName="WorkoutDashboard">
-=======
-<<<<<<< HEAD
       <SelectionState runConfigName="GoalActivity">
->>>>>>> 4c65aa5bebfa94a1247dbeead7cb246e492e100a
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
       <SelectionState runConfigName="LoginActivity">
@@ -21,7 +17,6 @@
       </SelectionState>
       <SelectionState runConfigName="NavigationActivity">
         <option name="selectionMode" value="DROPDOWN" />
-=======
       <SelectionState runConfigName="JHIGU-FITNESS">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
@@ -35,7 +30,9 @@
           </Target>
         </DropdownSelection>
         <DialogSelection />
->>>>>>> subim
+      </SelectionState>
+      <SelectionState runConfigName="WorkOutDetailActivity">
+        <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
   </component>

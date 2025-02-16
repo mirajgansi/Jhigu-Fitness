@@ -26,6 +26,7 @@
             app:tint="#FFFFFF" />
 
         <TextView
+            android:id="@+id/displayExercisename"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add workout name"
@@ -41,7 +42,7 @@
         android:layout_weight="1">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imageBrowseExercise"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/placeholder"
@@ -85,19 +86,13 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/addset"
+                android:id="@+id/displayExercisesets"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:text="Add sets"
                 android:textColor="#FFFFFF" />
 
-            <TextView
-                android:id="@+id/addRepetition"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Add repetition"
-                android:textColor="#FFFFFF" />
         </LinearLayout>
 
         <Button

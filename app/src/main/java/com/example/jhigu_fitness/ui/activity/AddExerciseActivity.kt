@@ -8,49 +8,51 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 import com.example.jhigu_fitness.R
 import com.example.jhigu_fitness.databinding.ActivityAddExerciseBinding
 import com.example.jhigu_fitness.model.ExerciseModel
 import com.example.jhigu_fitness.repository.ExerciseRepositoryImp
 import com.example.jhigu_fitness.utils.ImageUtlis
-import com.example.jhigu_fitness.utils.LoadingUtlis
+import com.example.jhigu_fitness.utils.LoadingUtils
 import com.example.jhigu_fitness.viewmodel.ExerciseViewModel
+import com.example.jhigu_fitness.viewmodel.ProductViewModel
 import com.squareup.picasso.Picasso
 
 class AddExerciseActivity : AppCompatActivity() {
-    lateinit var binding: ActivityAddExerciseBinding
-
-    lateinit var exerciseViewModel: ExerciseViewModel
-    lateinit var loadingUtils: LoadingUtlis
-
-    lateinit var imageUtils: ImageUtlis
-    var imageUri: Uri? = null
+    private lateinit var binding: ActivityAddExerciseBinding
+    private lateinit var exerciseViewModel: ExerciseViewModel
+    private lateinit var loadingUtils: LoadingUtils
+    private lateinit var imageUtils: ImageUtlis
+    private var imageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
         binding = ActivityAddExerciseBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         imageUtils = ImageUtlis(this)
+        loadingUtils = LoadingUtils(this)
 
-        loadingUtils = LoadingUtlis(this)
         val repo = ExerciseRepositoryImp()
-        exerciseViewModel = ExerciseViewModel(repo)
-
+        exerciseViewModel =ExerciseViewModel(repo)
         imageUtils.registerActivity { url ->
-            url.let {
+            url?.let {
                 imageUri = it
                 Picasso.get().load(it).into(binding.imageBrowseExercise)
             }
         }
+
         binding.imageBrowseExercise.setOnClickListener {
             imageUtils.launchGallery(this)
         }
+
         binding.btnAddPExercise.setOnClickListener {
             uploadImage()
         }
+
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -63,25 +65,28 @@ class AddExerciseActivity : AppCompatActivity() {
         loadingUtils.show()
         imageUri?.let { uri ->
             exerciseViewModel.uploadImage(this, uri) { imageUrl ->
-                Log.d("checkpoints", imageUrl.toString())
+                Log.d("ImageUpload", imageUrl.toString())
                 if (imageUrl != null) {
-                    addProduct(imageUrl)
+                    addExercise(imageUrl)
                 } else {
                     Log.e("Upload Error", "Failed to upload image to Cloudinary")
+                    loadingUtils.dismiss()
+                    Toast.makeText(this, "Failed to upload image", Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
+    private fun addExercise(url: String) {
+        var productName = binding.editExerciseName.text.toString()
+        var productPrice = binding.editExercisesets.text.toString().toInt()
+        var productDesc = binding.editExerciseDesc.text.toString()
 
-    private fun addProduct(url: String) {
-        var exerciseName = binding.editExerciseName.text.toString()
-        var exerciseSets = binding.editExercisesets.text.toString().toInt()
-        var exerciseDesc = binding.editExerciseDesc.text.toString()
-
-        var model = ExerciseModel(
-            "",
-            exerciseName,
-            exerciseDesc, exerciseSets, url
+        val model = ExerciseModel(
+             "",
+            exerciseName = productName,
+            description = productDesc,
+            sets = productPrice,
+            imageUrl = url
         )
 
         exerciseViewModel.addExercise(model) { success, message ->
