@@ -4,7 +4,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import com.example.jhigu_fitness.R
 
-class LoadingUtlis (val activity: Activity){
+class LoadingUtils (val activity: Activity){
     lateinit var alertDialog: AlertDialog
 
     fun show(){

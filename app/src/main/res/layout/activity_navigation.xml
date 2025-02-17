@@ -211,6 +211,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="648dp">
 
             <!-- Title -->
@@ -218,6 +219,11 @@
             <!-- Subtitle -->
 
             <!-- Profile Image -->
+=======
+            android:layout_height="match_parent">
+
+
+>>>>>>> main
 
             <TextView
                 android:id="@+id/title"
@@ -237,12 +243,21 @@
                 android:id="@+id/subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+<<<<<<< HEAD
                 android:layout_marginTop="32dp"
                 android:text="Best workouts training\nfor you"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.07"
+=======
+                android:layout_marginTop="72dp"
+                android:text="Best workouts training\nfor you"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.039"
+>>>>>>> main
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title" />
 
@@ -257,6 +272,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+<<<<<<< HEAD
             <!-- Upper Body Training Card -->
 
             <!-- Lower Body Training Card -->
@@ -313,6 +329,49 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+=======
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="471dp"
+                android:layout_height="115dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="100dp"
+                android:backgroundTint="@color/teal"
+                android:text="Upper Body Training"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/subtitle" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="471dp"
+                android:layout_height="115dp"
+                android:layout_marginStart="37dp"
+                android:layout_marginTop="34dp"
+                android:backgroundTint="@color/olive"
+                android:text="Lower Body Training"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button7" />
+
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="471dp"
+                android:layout_height="115dp"
+                android:layout_marginStart="44dp"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="@color/silver"
+                android:text="Abs Training"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button6" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="0dp"
+        android:id="@+id/frameLayout"
+        app:layout_constraintBottom_toTopOf="@+id/buttomNavigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+>>>>>>> main
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

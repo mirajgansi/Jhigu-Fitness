@@ -60,10 +60,9 @@ class ProductAdapter (var context: Context,
 
         holder.cardView.setOnClickListener {
             val intent = Intent(context, WorkoutDashboard::class.java)
-            intent.putExtra("id", data[position].productId)
+            intent.putExtra("id", data[position].productId)  // ✅ Passing ID
             context.startActivity(intent)
         }
-
         val imageUrl = data[position].imageUrl
         // Check if the URL is valid (not empty or null)
         if (!imageUrl.isNullOrEmpty()) {

@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.jhigu_fitness.R
 import com.example.jhigu_fitness.databinding.ActivityNavigationBinding
+import com.example.jhigu_fitness.ui.activity.WorkoutDashboard
 import com.example.jhigu_fitness.ui.fragment.HomeFragment
 import com.example.jhigu_fitness.ui.fragment.SettingFragment
 import com.example.jhigu_fitness.ui.fragment.WorkoutDashboardFragment
@@ -43,7 +44,7 @@ class NavigationActivity : AppCompatActivity() {
 
         binding.buttomNavigation.setOnItemSelectedListener {menu->
             when(menu.itemId){
-                R.id.nav_home ->replaceFragment(WorkoutDashboardFragment())
+                R.id.nav_home ->replaceFragment(HomeFragment())
                 R.id.nav_settings -> replaceFragment(SettingFragment())
                 R.id.nav_workouts -> replaceFragment(WorkoutDashboardFragment())
                 R.id.nav_profile -> replaceFragment(HomeFragment())

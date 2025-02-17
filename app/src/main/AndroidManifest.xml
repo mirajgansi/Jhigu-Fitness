@@ -21,9 +21,21 @@
         tools:replace="android:fullBackupContent"
         tools:targetApi="31">
         <activity
+<<<<<<< HEAD
 
             android:name=".ui.activity.ui.activity.AbsNavActivity"
 
+=======
+            android:name=".ui.activity.UpdateExerciseActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+>>>>>>> main
             android:name=".ui.activity.AddExerciseActivity"
 
             android:exported="true">
@@ -38,7 +50,13 @@
             android:name=".ui.activity.ui.activity.CalfActivity"
 
             android:name=".ui.activity.WorkOutDetailActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.activity.UpdateWorkoutActivity"
 
@@ -160,15 +178,6 @@
             android:value="default_value" /> <!-- Add a default value here -->
         <activity
             android:name=".ui.activity.ui.activity.LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.activity.ListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
