@@ -4,6 +4,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,9 +18,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JHIGUFITNESS"
+        tools:replace="android:fullBackupContent"
         tools:targetApi="31">
         <activity
+
             android:name=".ui.activity.ui.activity.AbsNavActivity"
+
+            android:name=".ui.activity.AddExerciseActivity"
+
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +34,14 @@
             </intent-filter>
         </activity>
         <activity
+
             android:name=".ui.activity.ui.activity.CalfActivity"
+
+            android:name=".ui.activity.WorkOutDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.UpdateWorkoutActivity"
+
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,7 +50,11 @@
             </intent-filter>
         </activity>
         <activity
+
             android:name=".ui.activity.ui.activity.LegsActivity"
+
+            android:name=".ui.activity.AddWorkoutActivity"
+
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,7 +63,14 @@
             </intent-filter>
         </activity>
         <activity
+
             android:name=".ui.activity.ui.activity.TricepsActivity"
+
+            android:name=".ui.activity.WorkoutDashboard"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.ui.activity.WeightActivity"
+
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -51,7 +79,11 @@
             </intent-filter>
         </activity>
         <activity
+
             android:name=".ui.activity.ui.activity.BicepsActivity"
+
+            android:name=".ui.activity.ExperienceActivity"
+
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -60,7 +92,11 @@
             </intent-filter>
         </activity>
         <activity
+
             android:name=".ui.activity.ui.activity.ShoulderActivity"
+
+            android:name=".ui.activity.GoalActivity"
+>>>>>>> ca7ddb97d85e2c3eab436b8c8a1b7b5be613e613
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -69,7 +105,11 @@
             </intent-filter>
         </activity>
         <activity
+
             android:name=".ui.activity.ui.activity.BackActivity"
+
+            android:name=".ui.activity.ui.activity.MotivationActivity"
+
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -78,7 +118,11 @@
             </intent-filter>
         </activity>
         <activity
+
             android:name=".ui.activity.ui.activity.ChestActivity"
+
+            android:name=".ui.activity.ui.activity.GenderActivity"
+>>>>>>> ca7ddb97d85e2c3eab436b8c8a1b7b5be613e613
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -87,7 +131,11 @@
             </intent-filter>
         </activity>
         <activity
+
             android:name=".ui.activity.ui.activity.AbsActivity"
+
+            android:name=".ui.activity.ui.activity.VerificationActivity"
+
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -96,7 +144,41 @@
             </intent-filter>
         </activity>
         <activity
+
             android:name=".ui.activity.ui.activity.AbsActivityy"
+
+            android:name=".ui.activity.SignUpActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity> <!-- Fix: Add the required android:value or android:resource -->
+        <meta-data
+            android:name="com.google.android.actions"
+            android:value="default_value" /> <!-- Add a default value here -->
+        <activity
+            android:name=".ui.activity.ui.activity.LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.activity.ListActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.activity.QuestionPage"
+
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -106,24 +188,6 @@
         </activity>
         <activity
             android:name=".ui.activity.ui.activity.NavigationActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.activity.ui.activity.DirectionalActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.activity.ui.activity.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
