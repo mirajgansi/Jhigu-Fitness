@@ -11,35 +11,35 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jhigu_fitness.R
-import com.example.jhigu_fitness.model.ProductModel
+import com.example.jhigu_fitness.model.WorkoutModel
 import com.example.jhigu_fitness.ui.activity.UpdateWorkoutActivity
 import com.example.jhigu_fitness.ui.activity.WorkoutDashboard
-import com.example.jhigu_fitness.ui.fragment.WorkoutDashboardFragment
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.lang.Exception
 
 
-class ProductAdapter (var context: Context,
-                      var data : ArrayList<ProductModel>)
-    : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>(){
+class WorkoutAdapter(
+    var context: Context,
+    var data: ArrayList<WorkoutModel>
+) : RecyclerView.Adapter<WorkoutAdapter.ProductViewHolder>() {
 
 
-    class ProductViewHolder(itemView: View)
-        : RecyclerView.ViewHolder(itemView){
-        val cardView : CardView = itemView.findViewById(R.id.cardWorkout)
-        val imageView : ImageView = itemView.findViewById(R.id.getImage)
-        val loading : ProgressBar = itemView.findViewById(R.id.progressBar2)
-        var btnEdit : TextView = itemView.findViewById(R.id.btnEdit)
-        var productName : TextView = itemView.findViewById(R.id.displayname)
-        var productPrice : TextView = itemView.findViewById(R.id.displaySets)
-        var productDesc : TextView = itemView.findViewById(R.id.displayDesc)
+    class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val cardView: CardView = itemView.findViewById(R.id.cardWorkout)
+        val imageView: ImageView = itemView.findViewById(R.id.getImage)
+        val loading: ProgressBar = itemView.findViewById(R.id.progressBar2)
+        var btnEdit: TextView = itemView.findViewById(R.id.btnEdit)
+        var productName: TextView = itemView.findViewById(R.id.displayname)
+        var productPrice: TextView = itemView.findViewById(R.id.displaySets)
+        var productDesc: TextView = itemView.findViewById(R.id.displayDesc)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        val itemView : View = LayoutInflater.from(context).inflate(
+        val itemView: View = LayoutInflater.from(context).inflate(
             R.layout.sample_product,
-            parent,false)
+            parent, false
+        )
         return ProductViewHolder(itemView)
     }
 
@@ -83,14 +83,14 @@ class ProductAdapter (var context: Context,
         }
     }
 
-    fun updateData(products: List<ProductModel>){
+    fun updateData(products: List<WorkoutModel>) {
         data.clear()
         data.addAll(products)
         notifyDataSetChanged()
 
     }
 
-    fun getProductId(position: Int) : String{
+    fun getProductId(position: Int): String {
         return data[position].productId
     }
 

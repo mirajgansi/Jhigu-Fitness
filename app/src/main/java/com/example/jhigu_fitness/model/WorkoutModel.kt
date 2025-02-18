@@ -3,7 +3,7 @@ package com.example.jhigu_fitness.model
 import android.os.Parcel
 import android.os.Parcelable
 
-data class ProductModel(
+data class WorkoutModel(
     var productId : String = "",
     var productName : String = "",
     var productDesc : String = "",
@@ -29,12 +29,12 @@ data class ProductModel(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<ProductModel> {
-        override fun createFromParcel(parcel: Parcel): ProductModel {
-            return ProductModel(parcel)
+    companion object CREATOR : Parcelable.Creator<WorkoutModel> {
+        override fun createFromParcel(parcel: Parcel): WorkoutModel {
+            return WorkoutModel(parcel)
         }
 
-        override fun newArray(size: Int): Array<ProductModel?> {
+        override fun newArray(size: Int): Array<WorkoutModel?> {
             return arrayOfNulls(size)
         }
     }

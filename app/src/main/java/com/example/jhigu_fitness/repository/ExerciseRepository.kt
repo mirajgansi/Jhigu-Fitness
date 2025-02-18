@@ -23,10 +23,9 @@ interface ExerciseRepository {
         callback: (Boolean, String) -> Unit
     )
 
-    fun getExerciseById(
-        ExerciseId: String,
-        callback: (ExerciseModel?, Boolean, String)
-        -> Unit
+    fun getExeriseFromDatabase(
+        productId: String,
+        callback: (List<ExerciseModel>?, Boolean, String) -> Unit
     )
 
     fun getAllExercise(

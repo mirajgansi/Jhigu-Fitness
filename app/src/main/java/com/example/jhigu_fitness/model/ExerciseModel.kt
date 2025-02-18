@@ -5,7 +5,7 @@ import android.os.Parcelable
 
 data class ExerciseModel(
     var exerciseId: String = "",
-    var productId : String = "",
+    var productName : String = "",
     var exerciseName: String = "",
     var description: String = "",
     var sets: Int =0,

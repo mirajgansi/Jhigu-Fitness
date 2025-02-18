@@ -39,6 +39,7 @@ class ExerciseAdapter(
             )
         }
     }
+    
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseViewHolder {
         val view =

@@ -10,23 +10,20 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.jhigu_fitness.R
 import com.example.jhigu_fitness.databinding.ActivityAddWorkoutBinding
-import com.example.jhigu_fitness.model.ProductModel
-import com.example.jhigu_fitness.repository.ProductRepositoryImp
+import com.example.jhigu_fitness.model.WorkoutModel
+import com.example.jhigu_fitness.repository.WorkoutRepositoryImp
 import com.example.jhigu_fitness.utils.ImageUtlis
 import com.example.jhigu_fitness.utils.LoadingUtils
-import com.example.jhigu_fitness.viewmodel.ProductViewModel
+import com.example.jhigu_fitness.viewmodel.WorkoutViewModel
 import com.squareup.picasso.Picasso
 
 class AddWorkoutActivity : AppCompatActivity() {
-    lateinit var binding: ActivityAddWorkoutBinding
 
-    lateinit var productViewModel: ProductViewModel
-
-    lateinit var loadingUtils: LoadingUtils
-
-    lateinit var imageUtils: ImageUtlis
-
-    var imageUri: Uri? = null
+    private lateinit var binding: ActivityAddWorkoutBinding
+    private lateinit var workoutViewModel: WorkoutViewModel
+    private lateinit var loadingUtils: LoadingUtils
+    private lateinit var imageUtils: ImageUtlis
+    private var imageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,28 +33,12 @@ class AddWorkoutActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         imageUtils = ImageUtlis(this)
-
         loadingUtils = LoadingUtils(this)
-        val repo = ProductRepositoryImp()
-        productViewModel = ProductViewModel(repo)
+        val repo = WorkoutRepositoryImp()
+        workoutViewModel = WorkoutViewModel(repo)
 
-
-        imageUtils.registerActivity { url ->
-            url.let { it ->
-                imageUri = it
-                Picasso.get().load(it).into(binding.imageBrowse)
-            }
-        }
-        binding.imageBrowse.setOnClickListener {
-            imageUtils.launchGallery(this)
-        }
-        binding.btnAddProduct.setOnClickListener {
-            uploadImage()
-
-        }
-
-
-
+        setupImageUpload()
+        setupAddProductButton()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -66,46 +47,70 @@ class AddWorkoutActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupImageUpload() {
+        imageUtils.registerActivity { url ->
+            url?.let {
+                imageUri = it
+                Picasso.get().load(it).into(binding.imageBrowse)
+            }
+        }
+
+        binding.imageBrowse.setOnClickListener {
+            imageUtils.launchGallery(this)
+        }
+    }
+
+    private fun setupAddProductButton() {
+        binding.btnAddProduct.setOnClickListener {
+            uploadImage()
+        }
+    }
+
     private fun uploadImage() {
         loadingUtils.show()
         imageUri?.let { uri ->
-            productViewModel.uploadImage(this, uri) { imageUrl ->
+            workoutViewModel.uploadImage(this, uri) { imageUrl ->
                 Log.d("checkpoints", imageUrl.toString())
                 if (imageUrl != null) {
                     addProduct(imageUrl)
                 } else {
                     Log.e("Upload Error", "Failed to upload image to Cloudinary")
+                    loadingUtils.dismiss()
+                    Toast.makeText(this, "Failed to upload image", Toast.LENGTH_SHORT).show()
                 }
             }
+        } ?: run {
+            loadingUtils.dismiss()
+            Toast.makeText(this, "Please select an image first", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun addProduct(url: String) {
-        var productName = binding.editProductName.text.toString()
-        var productPrice = binding.editProductPrice.text.toString().toInt()
-        var productDesc = binding.editProductDesc.text.toString()
+        val productName = binding.editProductName.text.toString()
+        val productPrice = binding.editProductPrice.text.toString().toIntOrNull() ?: 0
+        val productDesc = binding.editProductDesc.text.toString()
 
-        var model = ProductModel(
-            "",
-            productName,
-            productDesc, productPrice, url
-        )
+        if (productName.isNotBlank() && productPrice > 0 && productDesc.isNotBlank()) {
+            val model = WorkoutModel(
+                 "",
+                productName = productName,
+                productDesc = productDesc,
+                price = productPrice,
+                imageUrl = url
+            )
 
-        productViewModel.addWorkout(model) { success, message ->
-            if (success) {
-                Toast.makeText(
-                    this@AddWorkoutActivity,
-                    message, Toast.LENGTH_LONG
-                ).show()
-                finish()
-                loadingUtils.dismiss()
-            } else {
-                Toast.makeText(
-                    this@AddWorkoutActivity,
-                    message, Toast.LENGTH_LONG
-                ).show()
+            workoutViewModel.addWorkout(model) { success, message ->
+                if (success) {
+                    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+                    finish()
+                } else {
+                    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+                }
                 loadingUtils.dismiss()
             }
+        } else {
+            Toast.makeText(this, "Please fill all fields correctly", Toast.LENGTH_LONG).show()
+            loadingUtils.dismiss()
         }
     }
 }

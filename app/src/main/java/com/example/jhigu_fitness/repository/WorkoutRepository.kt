@@ -4,17 +4,18 @@ package com.example.jhigu_fitness.repository
 
 import android.content.Context
 import android.net.Uri
-import com.example.jhigu_fitness.model.ProductModel
+import com.example.jhigu_fitness.model.WorkoutModel
+import com.google.firebase.auth.FirebaseUser
 
 
-interface ProductRepository {
+interface WorkoutRepository {
 //    {
 //     "success":true
 //     "message":"Product fetched successfully"
 //    }
 
     fun addWorkout(
-        productModel: ProductModel,
+        productModel: WorkoutModel,
         callback: (Boolean, String) -> Unit
     )
 
@@ -31,18 +32,25 @@ interface ProductRepository {
 
     fun getWorkoutById(
         productId: String,
-        callback: (ProductModel?, Boolean, String)
+        callback: (WorkoutModel?, Boolean, String)
         -> Unit
     )
 
     fun getAllWorkout(
         callback:
-            (List<ProductModel>?, Boolean, String) -> Unit
+            (List<WorkoutModel>?, Boolean, String) -> Unit
     )
+    fun getCurrentWorkout(
+
+    ) : FirebaseUser?
+
     fun getWorkoutByCategory(
-        category: String,
-        callback: (List<ProductModel>?, Boolean, String) -> Unit
+        userID: String,
+        callback: (WorkoutModel?, Boolean, String) -> Unit
     )
+
+
+
     fun uploadImage(context: Context, imageUri: Uri, callback: (String?) -> Unit)
 
     fun getFileNameFromUri(context: Context, uri: Uri): String?

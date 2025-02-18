@@ -2,14 +2,14 @@ package com.example.jhigu_fitness.viewmodel
 
 import android.content.Context
 import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.jhigu_fitness.model.ProductModel
-import com.example.jhigu_fitness.repository.ProductRepository
+import androidx.lifecycle.ViewModel
+import com.example.jhigu_fitness.model.WorkoutModel
+import com.example.jhigu_fitness.repository.WorkoutRepository
 
-class ProductViewModel (val repo : ProductRepository) {
+class WorkoutViewModel (val repo : WorkoutRepository): ViewModel() {
     fun addWorkout(
-        productModel: ProductModel,
+        productModel: WorkoutModel,
         callback: (Boolean, String) -> Unit
     ) {
         repo.addWorkout(productModel, callback)
@@ -32,17 +32,19 @@ class ProductViewModel (val repo : ProductRepository) {
         repo.deleteWorkout(productId, callback)
     }
 
-    var _products = MutableLiveData<ProductModel?>()
-    var products = MutableLiveData<ProductModel?>()
+    var _products = MutableLiveData<WorkoutModel?>()
+    var products = MutableLiveData<WorkoutModel?>()
         get() = _products
 
-    var _allWorkout = MutableLiveData<List<ProductModel>?>()
-    var allWorkout = MutableLiveData<List<ProductModel>?>()
+    var _allWorkout = MutableLiveData<List<WorkoutModel>?>()
+    var allWorkout = MutableLiveData<List<WorkoutModel>?>()
         get() = _allWorkout
 
     var _loading = MutableLiveData<Boolean>()
     var loading = MutableLiveData<Boolean>()
         get() = _loading
+
+
 
     fun getWorkoutById(
         productId: String
@@ -66,17 +68,17 @@ class ProductViewModel (val repo : ProductRepository) {
         }
     }
 
-    val filteredWorkout = MutableLiveData<List<ProductModel>>()
+    val filteredWorkout = MutableLiveData<List<WorkoutModel>>()
 
-    fun getWorkoutByCategory(category: String) {
-        repo.getWorkoutByCategory(category) { workouts, success, _ ->
-            if (success) {
-                filteredWorkout.postValue(workouts ?: emptyList())
-            } else {
-                filteredWorkout.postValue(emptyList()) // Ensures RecyclerView clears on failure
-            }
-        }
-    }
+//    fun getWorkoutByCategory(category: String) {
+//        repo.getWorkoutByCategory(category) { workouts, success, _ ->
+//            if (success) {
+//                filteredWorkout.postValue(workouts ?: emptyList())
+//            } else {
+//                filteredWorkout.postValue(emptyList()) // Ensures RecyclerView clears on failure
+//            }
+//        }
+//    }
 
 
     fun uploadImage(context: Context, imageUri: Uri, callback: (String?) -> Unit) {

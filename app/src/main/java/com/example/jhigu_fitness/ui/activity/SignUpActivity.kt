@@ -8,7 +8,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.jhigu_fitness.databinding.ActivitySignUpBinding
 import com.example.jhigu_fitness.ui.activity.ui.activity.LoginActivity
-import com.example.jhigu_fitness.ui.activity.ui.activity.VerificationActivity
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -32,7 +31,7 @@ class SignUpActivity : AppCompatActivity() {
         // Handle register button click
         binding.btnSignIn.setOnClickListener {
             if (validateFields()) {
-                navigateToVerification()
+                LoginActivity()
             }
         }
     }
@@ -69,8 +68,5 @@ class SignUpActivity : AppCompatActivity() {
         return false
     }
 
-    private fun navigateToVerification() {
-        startActivity(Intent(this, VerificationActivity::class.java))
-        finish()
-    }
+
 }

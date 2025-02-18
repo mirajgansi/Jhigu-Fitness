@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.UpdateExerciseActivity">
+    tools:context=".ui.activity.UpdateWorkoutActivity">
 
     <ImageView
         android:layout_gravity="center"
@@ -37,7 +37,7 @@
     <Button
         android:layout_gravity="center"
         android:text="update product"
-        android:id="@+id/updateAddProduct"
+        android:id="@+id/updateProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 </LinearLayout>
