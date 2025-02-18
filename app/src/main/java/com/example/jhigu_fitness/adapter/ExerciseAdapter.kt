@@ -81,7 +81,7 @@ class ExerciseAdapter(
             override fun onError(e: Exception?) {
                 Log.e("Picasso", "Error loading image: ${e?.message}")
                 holder.loading.visibility = View.GONE
-                holder.imageView.setImageResource(R.drawable.placeholder) // Set a placeholder image
+                holder.imageView.setImageResource(R.drawable.placeholder) 
             }
         })
     }
@@ -95,6 +95,6 @@ class ExerciseAdapter(
 
 
     fun getExerciseId(position: Int): String {
-        return data[position].exerciseId.toString() // Convert the Int to a String
+        return data[position].exerciseId.toString() 
     }
 }
