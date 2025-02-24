@@ -2,6 +2,13 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+<<<<<<< HEAD
     <mapping directory="$PROJECT_DIR$/Jhigu-Fitness" vcs="Git" />
+=======
+<<<<<<< HEAD
+    <mapping directory="$PROJECT_DIR$/Jhigu-Fitness" vcs="Git" />
+=======
+>>>>>>> subim
+>>>>>>> 0616cc880858dcb44c7d4ccf020c4eb5fd4460cf
   </component>
 </project>
