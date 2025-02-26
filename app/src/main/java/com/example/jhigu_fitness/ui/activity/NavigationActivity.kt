@@ -47,7 +47,6 @@ class NavigationActivity : AppCompatActivity() {
                 R.id.nav_home ->replaceFragment(HomeFragment())
                 R.id.nav_settings -> replaceFragment(SettingFragment())
                 R.id.nav_workouts -> replaceFragment(WorkoutDashboardFragment())
-                R.id.nav_profile -> replaceFragment(HomeFragment())
 
                 else -> {}
             }

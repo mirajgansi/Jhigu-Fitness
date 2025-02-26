@@ -10,6 +10,8 @@ import android.util.Log
 import com.cloudinary.Cloudinary
 import com.cloudinary.utils.ObjectUtils
 import com.example.jhigu_fitness.model.ExerciseModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -20,7 +22,7 @@ import java.util.concurrent.Executors
 
 class ExerciseRepositoryImp : ExerciseRepository {
     val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-
+    var auth: FirebaseAuth = FirebaseAuth.getInstance()
     val ref: DatabaseReference = database.reference
         .child("exercises")
 
@@ -101,6 +103,26 @@ class ExerciseRepositoryImp : ExerciseRepository {
                 }
             })
     }
+
+
+
+    override fun getExercisebyId(
+        exerciseId: String,
+        callback: (ExerciseModel?, Boolean, String) -> Unit
+    ) {
+        ref.child(exerciseId).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    var model = snapshot.getValue(ExerciseModel::class.java)
+                    callback(model, true, "Details fetched successfully")
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                callback(null, false, error.message)
+            }
+        })
+    }
+
 
 
     override fun getAllExercise(callback: (List<ExerciseModel>?, Boolean, String) -> Unit) {

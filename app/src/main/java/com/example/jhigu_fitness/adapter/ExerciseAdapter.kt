@@ -13,7 +13,8 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jhigu_fitness.R
 import com.example.jhigu_fitness.model.ExerciseModel
-import com.example.jhigu_fitness.ui.activity.WorkoutDashboard
+import com.example.jhigu_fitness.ui.activity.UpdateExerciseActivity
+import com.example.jhigu_fitness.ui.activity.WorkOutDetailActivity
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.lang.Exception
@@ -27,10 +28,10 @@ class ExerciseAdapter(
         val cardView: CardView = itemView.findViewById(R.id.CardExercise)
         val imageView: ImageView = itemView.findViewById(R.id.getImageexe)
         val loading: ProgressBar = itemView.findViewById(R.id.ExeProgressbar)
-        var btnEdit: TextView = itemView.findViewById(R.id.btnExerciseEdit)
-        var exerciseName: TextView = itemView.findViewById(R.id.displayExercisename)
-        var exerciseReps: TextView = itemView.findViewById(R.id.displayExerciseSets)
-        var exerciseDesc: TextView = itemView.findViewById(R.id.displayExerciseDesc)
+        val btnEdit: TextView = itemView.findViewById(R.id.btnExerciseEdit)
+        val exerciseName: TextView = itemView.findViewById(R.id.displayExercisename)
+        val exerciseReps: TextView = itemView.findViewById(R.id.displayExerciseSets)
+        val exerciseDesc: TextView = itemView.findViewById(R.id.displayExerciseDesc)
 
         init {
             Log.d(
@@ -39,41 +40,45 @@ class ExerciseAdapter(
             )
         }
     }
-    
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.sample_exercise, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.sample_exercise, parent, false)
         return ExerciseViewHolder(view)
     }
 
-
-    override fun getItemCount(): Int {
-        return data.size
-    }
+    override fun getItemCount(): Int = data.size
 
     override fun onBindViewHolder(holder: ExerciseViewHolder, position: Int) {
         val exercise = data[position]
 
-        holder.exerciseName.text = exercise.exerciseName
-        holder.exerciseReps.text = data[position].sets.toString()
-        holder.exerciseDesc.text = exercise.description
+        // Handle nullability with defaults
+        holder.exerciseName.text = exercise.exerciseName ?: "Unnamed Exercise"
+        holder.exerciseReps.text = exercise.sets?.toString() ?: "0"
+        holder.exerciseDesc.text = exercise.description ?: "No description"
 
+        // Edit button launches UpdateExerciseActivity
         holder.btnEdit.setOnClickListener {
-            val intent = Intent(context, WorkoutDashboard::class.java)
-            intent.putExtra("exercise_id", exercise.exerciseId)  // ✅ Passing ID
+            val intent = Intent(context, UpdateExerciseActivity::class.java).apply {
+                putExtra("exerciseId", exercise.exerciseId)  // Matches UpdateExerciseActivity
+            }
             context.startActivity(intent)
         }
-//        holder.cardView.setOnClickListener {
-//            val intent = Intent(context, WorkOutDetailActivity::class.java).apply {
-//                putExtra("exercise_name", exercise.exerciseName)
-//                putExtra("exercise_sets", exercise.sets)
-//                putExtra("exercise_description", exercise.description)
-//            }
-//            context.startActivity(intent)
-//        }
 
+        // Card click launches WorkOutDetailActivity
+        holder.cardView.setOnClickListener {
+            val intent = Intent(context, WorkOutDetailActivity::class.java).apply {
+                putExtra("EXERCISE_ID", exercise.exerciseId)
+                putExtra("EXERCISE_NAME", exercise.exerciseName)
+                putExtra("EXERCISE_REPS", exercise.sets?.toString())
+                putExtra("EXERCISE_DESC", exercise.description)
+                putExtra("EXERCISE_IMAGE", exercise.imageUrl)
+            }
+            context.startActivity(intent)
+        }
 
+        // Load image with Picasso
+        holder.loading.visibility = View.VISIBLE
         Picasso.get().load(exercise.imageUrl).into(holder.imageView, object : Callback {
             override fun onSuccess() {
                 holder.loading.visibility = View.GONE
@@ -82,7 +87,7 @@ class ExerciseAdapter(
             override fun onError(e: Exception?) {
                 Log.e("Picasso", "Error loading image: ${e?.message}")
                 holder.loading.visibility = View.GONE
-                holder.imageView.setImageResource(R.drawable.placeholder) // Set a placeholder image
+                holder.imageView.setImageResource(R.drawable.placeholder)
             }
         })
     }
@@ -94,8 +99,7 @@ class ExerciseAdapter(
         notifyDataSetChanged()
     }
 
-
     fun getExerciseId(position: Int): String {
-        return data[position].exerciseId.toString() // Convert the Int to a String
+        return data[position].exerciseId ?: ""
     }
 }

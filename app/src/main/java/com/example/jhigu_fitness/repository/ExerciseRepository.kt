@@ -3,6 +3,7 @@ package com.example.jhigu_fitness.repository
 import android.content.Context
 import android.net.Uri
 import com.example.jhigu_fitness.model.ExerciseModel
+import com.google.firebase.auth.FirebaseUser
 
 
 interface ExerciseRepository {
@@ -28,6 +29,11 @@ interface ExerciseRepository {
         callback: (List<ExerciseModel>?, Boolean, String) -> Unit
     )
 
+
+    fun getExercisebyId(
+        ExerciseId: String,
+        callback: (ExerciseModel?, Boolean, String) -> Unit
+    )
     fun getAllExercise(
         callback:
             (List<ExerciseModel>?, Boolean, String) -> Unit

@@ -46,6 +46,7 @@ class WorkoutDashboard : AppCompatActivity() {
 
         val productId = intent.getStringExtra("id") ?: ""
 
+
         Log.d("I am here", productId)
         exerciseViewModel.getExeriseFromDatabase(productId)
 

@@ -52,7 +52,15 @@ class ExerciseViewModel(val repo: ExerciseRepository) : ViewModel() {
         }
     }
 
-    // In your repository or ViewModel:
+    fun getExerciseById(exerciseId: String) {
+        repo.getExercisebyId(exerciseId) { product, success, message ->
+            if (success) {
+                _exercise.value = product
+            }
+        }
+    }
+
+            // In your repository or ViewModel:
 //    fun getExerciseById(productId: String, exerciseId: String, callback: (ExerciseModel?, Boolean, String) -> Unit) {
 //        // Reference the 'productId' node and then the specific 'exerciseId' under it
 //        repo.child("productid").child(productId).child(exerciseId).addListenerForSingleValueEvent(object :

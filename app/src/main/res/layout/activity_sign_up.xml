@@ -70,7 +70,7 @@
         android:background="@android:drawable/edit_text" />
 
     <EditText
-        android:id="@+id/ConformPassword"
+        android:id="@+id/Password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter new  password"
@@ -82,7 +82,7 @@
         android:background="@android:drawable/edit_text" />
     <!-- Password Input -->
     <EditText
-        android:id="@+id/Password"
+        android:id="@+id/ConformPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Confirm Password"

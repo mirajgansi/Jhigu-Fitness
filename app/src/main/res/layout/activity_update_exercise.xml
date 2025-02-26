@@ -23,7 +23,7 @@
 
     <EditText
         android:hint="Update Workout sets"
-        android:id="@+id/updatePrice"
+        android:id="@+id/updateReps"
         android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -37,7 +37,7 @@
     <Button
         android:layout_gravity="center"
         android:text="update product"
-        android:id="@+id/updateProduct"
+        android:id="@+id/updateExercise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 </LinearLayout>

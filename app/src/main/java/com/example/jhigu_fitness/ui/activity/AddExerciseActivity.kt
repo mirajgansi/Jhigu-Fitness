@@ -53,12 +53,13 @@ class AddExerciseActivity : AppCompatActivity() {
                 Picasso.get().load(it).into(binding.imageBrowseExercise)
             }
         }
-
+         var workoutIds: List<String> = emptyList()
         // Fetch product IDs and set up the spinner
         workoutViewModel.getAllWorkout() // Call this to fetch data
         workoutViewModel.allWorkout.observe(this) { workouts ->
-            val workoutIds = workouts?.map { it.productId } ?: emptyList()
-            val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, workoutIds)
+             workoutIds = workouts?.map { it.productId } ?: emptyList()
+            val workoutName= workouts?.map { it.productName } ?: emptyList()
+            val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, workoutName)
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             binding.spinner.adapter = adapter
         }
@@ -66,9 +67,9 @@ class AddExerciseActivity : AppCompatActivity() {
         // Set up spinner selection listener
         binding.spinner.onItemSelectedListener = object : android.widget.AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: android.widget.AdapterView<*>, view: android.view.View?, position: Int, id: Long) {
-                spinner = parent.getItemAtPosition(position) as String
+                // Store the product ID based on the selected position
+                spinner = workoutIds[position]
             }
-
             override fun onNothingSelected(parent: android.widget.AdapterView<*>) {
                 spinner = null
             }
