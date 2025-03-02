@@ -8,7 +8,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.jhigu_fitness.databinding.ActivitySignUpBinding
 import com.example.jhigu_fitness.ui.activity.ui.activity.LoginActivity
-import com.example.jhigu_fitness.ui.activity.ui.activity.VerificationActivity
 
 class SignUpActivity : AppCompatActivity() {
 
