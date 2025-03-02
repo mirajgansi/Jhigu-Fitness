@@ -1,7 +1,7 @@
 
 package com.example.jhigu_fitness.ui.activity.ui.activity
 
-//import android.app.Activity
+
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -40,7 +40,7 @@ class NavigationActivity : AppCompatActivity() {
         binding = ActivityNavigationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        replaceFragment(WorkoutDashboardFragment())
+        replaceFragment(HomeFragment())
 
         binding.buttomNavigation.setOnItemSelectedListener {menu->
             when(menu.itemId){
