@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/code_button"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-<<<<<<< HEAD
-<<<<<<< HEAD
-    tools:context=".ui.activity.MainActivity">
-=======
-    tools:context=".MainActivity">
->>>>>>> 0867dbfb7ba5cd9f3800a264292e7f08e0891759
-=======
-    tools:context=".ui.activity.ui.activity.MainActivity">
->>>>>>> rojan
-
+    android:layout_height="match_parent">
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-<<<<<<< HEAD
-</androidx.constraintlayout.widget.ConstraintLayout>
-=======
->>>>>>> 0616cc880858dcb44c7d4ccf020c4eb5fd4460cf

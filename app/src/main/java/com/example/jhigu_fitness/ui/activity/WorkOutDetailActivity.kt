@@ -2,91 +2,64 @@ package com.example.jhigu_fitness.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.jhigu_fitness.R
-import com.example.jhigu_fitness.adapter.ExerciseAdapter
 import com.example.jhigu_fitness.databinding.ActivityWorkOutDetailBinding
-import com.example.jhigu_fitness.repository.ExerciseRepositoryImp
-import com.example.jhigu_fitness.viewmodel.ExerciseViewModel
 import com.squareup.picasso.Picasso
 
 class WorkOutDetailActivity : AppCompatActivity() {
-        lateinit var binding: ActivityWorkOutDetailBinding
 
-        lateinit var exerciseViewModel: ExerciseViewModel
+    private lateinit var binding: ActivityWorkOutDetailBinding
 
-        lateinit var exerciseAdapter: ExerciseAdapter
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
 
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            enableEdgeToEdge()
-            binding = ActivityWorkOutDetailBinding.inflate(layoutInflater)
-            setContentView(binding.root)
+        // Initialize binding first
+        binding = ActivityWorkOutDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-            exerciseAdapter = ExerciseAdapter(this@WorkOutDetailActivity,
-                ArrayList())
+        // Get the exercise details from the Intent
+        val exerciseId = intent.getStringExtra("EXERCISE_ID")
+        val name = intent.getStringExtra("EXERCISE_NAME")
+        val sets = intent.getStringExtra("EXERCISE_REPS")?.toIntOrNull() ?: 0  // Convert to int, default to 0 if null
+        val desc = intent.getStringExtra("EXERCISE_DESC")
+        val image = intent.getStringExtra("EXERCISE_IMAGE")
 
-            val repo = ExerciseRepositoryImp()
-            exerciseViewModel = ExerciseViewModel(repo)
+        // Check if the exercise ID is null or empty
+        if (exerciseId.isNullOrEmpty()) {
+            Toast.makeText(this, "Exercise ID is missing", Toast.LENGTH_SHORT).show()
+            finish()  // Close activity if ID is not found
+            return
+        }
 
-            exerciseViewModel.getExerciseById()
+        // Debugging logs
+        Log.d(
+            "WorkOutDetailActivity",
+            "Exercise ID: $exerciseId, Name: $name, Sets: $sets, Desc: $desc, Image: $image"
+        )
 
-            exerciseViewModel.exercise.observe(this){product->
-                product?.let {
-                    exerciseAdapter.updateData(it)
-                }
+        // Set data to UI
+        binding.displayExercisename.text = name
+        binding.displayExerciseSets.text = "Sets: $sets"  // Display Sets
+
+        if (!image.isNullOrEmpty()) {
+            Picasso.get().load(image).into(binding.imageBrowseExercise)  // Load image with Picasso
+        }
+
+        // Set up the button listener AFTER retrieving intent values
+        binding.startButton.setOnClickListener {
+            val resultIntent = Intent().apply {
+                putExtra("EXERCISE_ID", exerciseId)
+                putExtra("EXERCISE_NAME", name)
+                putExtra("EXERCISE_REPS", sets.toString())  // Convert back to String if needed
+                putExtra("EXERCISE_DESC", desc)
+                putExtra("EXERCISE_IMAGE", image)
             }
-
-            exerciseViewModel.loadingState.observe(this){loading->
-                if(loading){
-                    binding.progressBar2.visibility = View.VISIBLE
-                }else{
-                    binding.progressBar2.visibility = View.GONE
-                }
-            }
-
-            ItemTouchHelper(object: ItemTouchHelper.SimpleCallback(0,
-                ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
-                override fun onMove(
-                    recyclerView: RecyclerView,
-                    viewHolder: RecyclerView.ViewHolder,
-                    target: RecyclerView.ViewHolder
-                ): Boolean {
-                    TODO("Not yet implemented")
-                }
-
-                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                    var productId = exerciseAdapter.getExerciseId(viewHolder.adapterPosition)
-
-                    exerciseViewModel.deleteExercise(productId){
-                            success,message->
-                        if(success){
-                            Toast.makeText(this@WorkOutDetailActivity,
-                                message,Toast.LENGTH_SHORT).show()
-                        }else{
-                            Toast.makeText(this@WorkOutDetailActivity,message,Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                }
-
-            })
-
-
-
-            ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-                val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-                insets
-            }
+            setResult(RESULT_OK, resultIntent)
+            finish()  // Returns to WorkoutDashboard
         }
     }
+}

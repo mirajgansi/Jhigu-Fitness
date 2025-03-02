@@ -2,83 +2,71 @@ package com.example.jhigu_fitness.ui.activity.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.example.jhigu_fitness.R
 import com.example.jhigu_fitness.databinding.ActivityLoginBinding
-import com.example.jhigu_fitness.ui.activity.MainActivity
-import com.example.jhigu_fitness.ui.activity.SignUpActivity
+import com.example.jhigu_fitness.repository.UserRepositoryImp
+import com.example.jhigu_fitness.ui.activity.ForgetPasswordActivity
+import com.example.jhigu_fitness.ui.activity.RegisterActivity
+import com.example.jhigu_fitness.utils.LoadingUtils
+import com.example.jhigu_fitness.viewmodel.UserViewModel
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var userViewModel: UserViewModel
+    private lateinit var loadingUtils: LoadingUtils
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupViews()
-    }
+        val repo = UserRepositoryImp()
+        userViewModel = UserViewModel(repo)
 
-    private fun setupViews() {
-        // Handle login button click
-        binding.btnSignIn.setOnClickListener {
-            performLogin()
+        // Initializing loading
+        loadingUtils = LoadingUtils(this)
+
+        binding.btnLogin.setOnClickListener {
+            loadingUtils.show()
+            val email: String = binding.etEmail.text.toString()
+            val password: String = binding.etPassword.text.toString()
+
+            userViewModel.login(email, password) { success, message ->
+                if (success) {
+                    Toast.makeText(this@LoginActivity, message, Toast.LENGTH_LONG).show()
+                    loadingUtils.dismiss()
+                    val intent = Intent(this@LoginActivity, NavigationActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
+                    loadingUtils.dismiss()
+                }
+            }
         }
 
-        // Handle sign up text click
         binding.tvSignUpLink.setOnClickListener {
-            navigateToSignUp()
-        }
-    }
-
-    private fun performLogin() {
-        val email = binding.etEmail.text.toString().trim()
-        val password = binding.etPassword.text.toString().trim()
-
-        if (validateInput(email, password)) {
-            // Proceed with login logic
-            attemptLogin(email, password)
-        }
-    }
-
-    private fun validateInput(email: String, password: String): Boolean {
-        var isValid = true
-
-        if (email.isEmpty()) {
-            binding.etEmail.error = "Email cannot be empty"
-            isValid = false
+            val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
+            startActivity(intent)
         }
 
-        if (password.isEmpty()) {
-            binding.etPassword.error = "Password cannot be empty"
-            isValid = false
+        binding.btnForget.setOnClickListener {
+            val intent = Intent(this@LoginActivity, ForgetPasswordActivity::class.java)
+            startActivity(intent)
         }
 
-        return isValid
-    }
-
-    private fun attemptLogin(email: String, password: String) {
-        // Add your actual login logic here
-        if (isCredentialsValid(email, password)) {
-            navigateToMainActivity()
-        } else {
-            binding.etPassword.error = "Invalid credentials"
+        // Use binding.root instead of findViewById
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
         }
-    }
-
-    private fun isCredentialsValid(email: String, password: String): Boolean {
-        // Replace with real authentication logic
-        return email.isNotEmpty() && password.isNotEmpty()
-    }
-
-    private fun navigateToMainActivity() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
-    private fun navigateToSignUp() {
-        val intent = Intent(this, SignUpActivity::class.java)
-        startActivity(intent)
     }
 }

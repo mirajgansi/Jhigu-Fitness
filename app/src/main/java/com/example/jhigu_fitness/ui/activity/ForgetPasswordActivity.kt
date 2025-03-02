@@ -1,30 +1,53 @@
 package com.example.jhigu_fitness.ui.activity
 
-import android.app.Activity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.example.jhigu_fitness.databinding.ActivityForgetPasswordBinding
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.example.jhigu_fitness.R
+import com.example.jhigu_fitness.databinding.ActivityForgotPasswordBinding
+import com.example.jhigu_fitness.repository.UserRepositoryImp
+import com.example.jhigu_fitness.utils.LoadingUtils
+import com.example.jhigu_fitness.viewmodel.UserViewModel
 
 class ForgetPasswordActivity : AppCompatActivity() {
-
-    lateinit var binding : ActivityForgetPasswordBinding
-
+    lateinit var forgetPasswordBinding: ActivityForgotPasswordBinding
+    lateinit var userViewModel: UserViewModel
+    lateinit var loadingUtils: LoadingUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        forgetPasswordBinding = ActivityForgotPasswordBinding.inflate(layoutInflater)
+        setContentView(forgetPasswordBinding.root)
 
-        binding = ActivityForgetPasswordBinding.inflate(layoutInflater)
+        //initializing auth viewmodel
+        var repo = UserRepositoryImp()
+        userViewModel = UserViewModel(repo)
 
-        setContentView(binding.root)
+        //initializing loading
+        loadingUtils = LoadingUtils(this)
+        forgetPasswordBinding.btnForget.setOnClickListener {
+            loadingUtils.show()
+            var email: String = forgetPasswordBinding.editEmailForget.text.toString()
 
-        binding.codesend.setOnClickListener {
+            userViewModel.forgetPassword(email) { success, message ->
+                if (success) {
+                    loadingUtils.dismiss()
+                    Toast.makeText(this@ForgetPasswordActivity, message, Toast.LENGTH_LONG).show()
+                    finish()
+                } else {
+                    loadingUtils.dismiss()
+                    Toast.makeText(this@ForgetPasswordActivity, message, Toast.LENGTH_LONG).show()
 
-            val phoneNumber = binding.editTextNumberPassword.text.toString()
-            if (phoneNumber.isEmpty()) {
-                Toast.makeText(this, "Please enter your phone number", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-            Toast.makeText(this, "Reset link sent to $phoneNumber", Toast.LENGTH_SHORT).show()
+                }
             }
         }
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
     }
+}

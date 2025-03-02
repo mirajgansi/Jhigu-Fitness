@@ -10,6 +10,8 @@ import android.util.Log
 import com.cloudinary.Cloudinary
 import com.cloudinary.utils.ObjectUtils
 import com.example.jhigu_fitness.model.ExerciseModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -18,9 +20,9 @@ import com.google.firebase.database.ValueEventListener
 import java.io.InputStream
 import java.util.concurrent.Executors
 
-class ExerciseRepositoryImp: ExerciseRepository {
+class ExerciseRepositoryImp : ExerciseRepository {
     val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-
+    var auth: FirebaseAuth = FirebaseAuth.getInstance()
     val ref: DatabaseReference = database.reference
         .child("exercises")
 
@@ -72,23 +74,56 @@ class ExerciseRepositoryImp: ExerciseRepository {
         }
     }
 
-    override fun getExerciseById(
+    override fun getExeriseFromDatabase(
         productId: String,
+        callback: (List<ExerciseModel>?, Boolean, String) -> Unit
+    ) {
+        // Query: get exercises where the "productId" field equals the provided productId
+        ref.orderByChild("productName").equalTo(productId)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val exercises = mutableListOf<ExerciseModel>()
+                    for (data in snapshot.children) {
+                        val exercise = data.getValue(ExerciseModel::class.java)
+                        if (exercise != null) {
+                            Log.d("checkpoint","i am here")
+                            Log.d("checkpoint",exercise.exerciseName)
+                            exercises.add(exercise)
+                        }
+                    }
+                    if (exercises.isNotEmpty()) {
+                        callback(exercises, true, "Exercises fetched successfully")
+                    } else {
+                        callback(emptyList(), true, "No exercises found for the given productId")
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    callback(null, false, error.message)
+                }
+            })
+    }
+
+
+
+    override fun getExercisebyId(
+        exerciseId: String,
         callback: (ExerciseModel?, Boolean, String) -> Unit
     ) {
-        ref.child(productId).addValueEventListener(object : ValueEventListener {
+        ref.child(exerciseId).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     var model = snapshot.getValue(ExerciseModel::class.java)
-                    callback(model, true, "Product fetched")
+                    callback(model, true, "Details fetched successfully")
                 }
             }
-
             override fun onCancelled(error: DatabaseError) {
                 callback(null, false, error.message)
             }
         })
     }
+
+
 
     override fun getAllExercise(callback: (List<ExerciseModel>?, Boolean, String) -> Unit) {
         ref.addValueEventListener(object : ValueEventListener {
