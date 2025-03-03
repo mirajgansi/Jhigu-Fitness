@@ -1,12 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="#29292E"
-    android:padding="16dp"
-    tools:context=".ui.activity.WorkoutDashboard">
+    android:padding="16dp">
 
     <!-- Back Button and Title -->
     <LinearLayout
@@ -26,26 +23,21 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <!-- Workout Image -->
+    <!-- Workout Video (Replaces ImageView) -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <ImageView
-            android:id="@+id/imageBrowseExercise"
+        <VideoView
+            android:id="@+id/videoExercise"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/placeholder"
-            android:scaleType="centerCrop"
-            android:contentDescription="Workout image" />
+            android:layout_gravity="center" />
 
     </FrameLayout>
 
-    <!-- Workout Details -->
-
-
-
+    <!-- Rest of your layout remains the same -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,7 +56,7 @@
             android:textSize="16sp" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:orientation="horizontal">
@@ -76,20 +68,74 @@
                 android:layout_marginEnd="16dp"
                 android:text="Add sets"
                 android:textColor="#FFFFFF" />
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <EditText
+                android:id="@+id/editReps"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:hint="Reps"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#757575"
+                android:backgroundTint="#FFFFFF"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/editWeight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:hint="Weight (kg)"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#757575"
+                android:backgroundTint="#FFFFFF"
+                android:inputType="numberDecimal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/displayTempReps"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="Reps: -"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/displayTempWeight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="Weight: -"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
 
         <Button
-            android:id="@+id/startButton"
+            android:id="@+id/finishButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#FF5722"
-            android:text="Start"
+            android:text="Finish"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
     </LinearLayout>
 
-    <!-- Space for Bottom Navigation -->
     <Space
         android:layout_width="match_parent"
         android:layout_height="64dp" />
