@@ -6,50 +6,105 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1A1F2A"
+    android:padding="16dp"
     tools:context=".ui.activity.AddExerciseActivity">
+
     <ImageView
         android:id="@+id/backArrow"
-        android:layout_width="20dp"
-        android:layout_height="25dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_gravity="start"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:srcCompat="@drawable/backarrow"
-        />
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:tint="#FF4081"
+        app:srcCompat="@drawable/backarrow" />
+
     <ImageView
-        android:layout_gravity="center"
         android:id="@+id/imageBrowseExercise"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
         android:src="@drawable/placeholder"
-        android:layout_width="150dp"
-        android:layout_height="150dp"/>
+        android:scaleType="centerCrop"
+        android:background="@drawable/image_backgrounf"
+        android:elevation="4dp" />
+
     <EditText
-        android:hint="Enter Exercise name"
         android:id="@+id/editExerciseName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:hint="Enter Exercise Name"
+        android:textSize="16sp"
+        android:textColor="#212121"
+        android:textColorHint="#757575"
+        android:padding="12dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edittext_background_prominent"
+        android:maxLines="1"
+        android:elevation="2dp" />
 
     <EditText
-        android:hint="Enter Exercise sets"
         android:id="@+id/editExercisesets"
-        android:inputType="numberDecimal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:hint="Enter Exercise Sets"
+        android:inputType="numberDecimal"
+        android:textSize="16sp"
+        android:textColor="#212121"
+        android:textColorHint="#757575"
+        android:padding="12dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/edittext_background_prominent"
+        android:maxLines="1"
+        android:elevation="2dp" />
 
     <EditText
-        android:hint="Enter Exercise description"
         android:id="@+id/editExerciseDesc"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:hint="Enter Exercise Description"
+        android:textSize="16sp"
+        android:textColor="#212121"
+        android:textColorHint="#757575"
+        android:padding="12dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/edittext_background_prominent"
+        android:minHeight="100dp"
+        android:gravity="top"
+        android:elevation="2dp" />
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/spinner_background"
+        android:padding="8dp"
+        android:elevation="2dp" />
 
-    <Button
-        android:layout_gravity="center"
-        android:text="Add Exercise"
-        android:id="@+id/btnAddPExercise"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="24dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnAddPExercise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="Add Exercise"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:background="@drawable/button_background"
+            android:elevation="4dp"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
 </LinearLayout>

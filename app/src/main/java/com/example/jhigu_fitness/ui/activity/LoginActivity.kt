@@ -57,10 +57,6 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.btnForget.setOnClickListener {
-            val intent = Intent(this@LoginActivity, ForgetPasswordActivity::class.java)
-            startActivity(intent)
-        }
 
         // Use binding.root instead of findViewById
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->

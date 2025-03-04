@@ -171,7 +171,7 @@ class WorkOutDetailActivity : AppCompatActivity() {
             }
 
             binding.videoExercise.setOnErrorListener { mp, what, extra ->
-                Log.e("CLOUDINARY_VIDEO_ERROR", "❌ Attempt #${attemptCount+1} failed: what=$what, extra=$extra, URL=$urlToTry")
+                Log.e("CLOUDINARY_VIDEO_ERROR", "Attempt #${attemptCount+1} failed: what=$what, extra=$extra, URL=$urlToTry")
 
                 // Log detailed error info
                 when(what) {

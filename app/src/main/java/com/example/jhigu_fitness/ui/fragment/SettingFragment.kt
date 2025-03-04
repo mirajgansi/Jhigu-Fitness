@@ -51,7 +51,7 @@ class SettingFragment : Fragment() {
                 binding.profileEmail.text = it.email
                 binding.profileName.text = it.fName
                 binding.editName.setText(it.fName)
-                binding.editEmail.setText(it.email)
+
             }
         }
 
@@ -86,7 +86,7 @@ class SettingFragment : Fragment() {
         // Save updated profile
         binding.btnSaveProfile.setOnClickListener {
             val newName = binding.editName.text.toString()
-            val newEmail = binding.editEmail.text.toString()
+            val newEmail = binding.profileEmail.text.toString()
             if (newName.isNotEmpty() && newEmail.isNotEmpty()) {
                 currentUser?.uid?.let { uid ->
                     val updatedUser = userViewModel.userData.value?.copy(

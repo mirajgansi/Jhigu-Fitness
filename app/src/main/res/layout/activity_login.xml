@@ -3,69 +3,75 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:background="#2B2F3A"
+    android:padding="20dp"
+    android:background="#1A1F2A"
     android:gravity="center">
 
-    <!-- Title -->
-
+    <!-- Title with shadow for a 3D effect -->
     <TextView
         android:id="@+id/tvSignInTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Jhigu Fitness"
         android:textColor="#FF5252"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:textStyle="bold"
-        android:layout_marginBottom="24dp" />
+        android:shadowColor="#80000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+        android:layout_marginBottom="40dp" />
 
-    <!-- Email Input -->
+    <!-- Email Input with custom styling -->
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:hint="Enter your email"
         android:inputType="textEmailAddress"
         android:padding="12dp"
-        android:layout_marginBottom="16dp"
-        android:background="@android:drawable/edit_text" />
+        android:textColor="#FFFFFF"
+        android:textColorHint="#90A4AE"
+        android:background="#2E3440"
+        android:layout_marginBottom="20dp" />
 
     <!-- Password Input -->
-
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:hint="Enter your password"
         android:inputType="textPassword"
         android:padding="12dp"
-        android:layout_marginBottom="16dp"
-        android:background="@android:drawable/edit_text" />
+        android:textColor="#FFFFFF"
+        android:textColorHint="#90A4AE"
+        android:background="#2E3440"
+        android:layout_marginBottom="20dp" />
 
-    <!-- Sign In Button -->
+    <!-- Sign In Button with bold styling -->
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:text="Next"
+        android:textSize="16sp"
+        android:textStyle="bold"
         android:textColor="#FFFFFF"
         android:backgroundTint="#FF5252"
-        android:layout_marginBottom="12dp" />
-    <TextView
-        android:layout_gravity="end"
-        android:id="@+id/btnForget"
-        android:textColor="@android:color/holo_blue_dark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Forget Password?" />
+        android:elevation="4dp"
+        android:layout_marginBottom="16dp" />
 
-    <!-- Sign Up Link -->
     <TextView
         android:id="@+id/tvSignUpLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Don’t have an account? Sign Up"
-        android:layout_marginTop="8dp"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:padding="4dp"
         android:clickable="true"
-        android:focusable="true" />
-</LinearLayout>
+        android:focusable="true"
+        android:textStyle="italic"
+        />
+
+     </LinearLayout>

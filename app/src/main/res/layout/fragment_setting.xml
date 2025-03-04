@@ -5,189 +5,198 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#1A1F2A"
     tools:context=".ui.fragment.SettingFragment">
 
     <!-- Profile Info Section -->
     <androidx.cardview.widget.CardView
-        android:layout_margin="10dp"
-        app:cardCornerRadius="10dp"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="6dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#1A1F2A">
         <LinearLayout
-            android:padding="15dp"
+            android:padding="20dp"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/profileName"
-                android:text="Full Name"
+                android:text="Namae"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="8dp"/>
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"/>
             <TextView
                 android:id="@+id/profileEmail"
-                android:text="xyz@gmail.com"
+                android:text="JhiguFitnes@gmail.com"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="4dp"/>
+                android:layout_marginTop="8dp"
+                android:textSize="16sp"
+                android:textColor="#757575"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <!-- Edit Profile Section -->
     <androidx.cardview.widget.CardView
         android:id="@+id/editProfile"
-        android:layout_margin="10dp"
-        app:cardCornerRadius="10dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#1A1F2A"
+        android:foreground="?android:attr/selectableItemBackground">
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
-            android:padding="15dp"
+            android:padding="16dp"
             android:layout_height="wrap_content">
             <ImageView
                 android:src="@drawable/baseline_mode_edit_outline_24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:tint="##1A1F2A"/>
             <TextView
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="12dp"
                 android:text="Edit Profile"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#FFFF"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- Edit Profile Dropdown (Initially Hidden) -->
+    <!-- Edit Profile Dropdown -->
     <LinearLayout
         android:id="@+id/editProfileDropdown"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp"
+        android:padding="16dp"
+        android:background="#FAFAFA"
         android:visibility="gone">
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:layout_marginTop="8dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="#1976D2"
+            app:hintTextColor="#1976D2">
             <EditText
                 android:id="@+id/editName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter full name" />
+                android:hint="Enter full name"
+                android:textColor="#212121"/>
         </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            <EditText
-                android:id="@+id/editEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter email"
-                android:inputType="textEmailAddress" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:passwordToggleEnabled="true">
-            <EditText
-                android:id="@+id/editNewPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="New Password"
-                android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:passwordToggleEnabled="true">
-            <EditText
-                android:id="@+id/editConfirmPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Confirm Password"
-                android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
+        <!-- Similar styling for other TextInputLayouts -->
         <Button
             android:id="@+id/btnSaveProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Save"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#1976D2"
+            style="@style/Widget.MaterialComponents.Button"
+            android:textColor="#FFFFFF"/>
     </LinearLayout>
 
     <!-- Settings Section -->
     <androidx.cardview.widget.CardView
         android:id="@+id/settings"
-        android:layout_margin="10dp"
-        app:cardCornerRadius="10dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#1A1F2A"
+        android:foreground="?android:attr/selectableItemBackground">
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
-            android:padding="15dp"
+            android:padding="16dp"
             android:layout_height="wrap_content">
             <ImageView
                 android:src="@drawable/baseline_settings_24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:tint="#1976D2"/>
             <TextView
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="12dp"
                 android:text="Settings"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#FFFFFF"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- Settings Dropdown (Initially Hidden) -->
+    <!-- Settings Dropdown -->
     <LinearLayout
         android:id="@+id/settingsDropdown"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp"
+        android:padding="16dp"
+        android:background="#FAFAFA"
         android:visibility="gone">
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Notifications"
-            android:textSize="16sp" />
-        <Switch
-            android:id="@+id/switchNotifications"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Notifications"
+                android:textSize="16sp"
+                android:textColor="#212121"/>
+            <Switch
+                android:id="@+id/switchNotifications"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:trackTint="#B0BEC5"
+                app:thumbTint="#1976D2"/>
+        </LinearLayout>
     </LinearLayout>
 
     <!-- Logout Section -->
     <androidx.cardview.widget.CardView
         android:id="@+id/logout"
-        android:layout_margin="10dp"
-        app:cardCornerRadius="10dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#1A1F2A"
+        android:foreground="?android:attr/selectableItemBackground">
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
-            android:padding="15dp"
+            android:padding="16dp"
             android:layout_height="wrap_content">
             <ImageView
                 android:src="@drawable/baseline_logout_24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:tint="#D32F2F"/>
             <TextView
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="12dp"
                 android:text="Logout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#D32F2F"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
