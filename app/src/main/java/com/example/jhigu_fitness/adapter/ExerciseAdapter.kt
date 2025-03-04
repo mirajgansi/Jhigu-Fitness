@@ -53,9 +53,9 @@ class ExerciseAdapter(
         val exercise = data[position]
 
         // Handle nullability with defaults
-        holder.exerciseName.text = exercise.exerciseName ?: "Unnamed Exercise"
-        holder.exerciseReps.text = exercise.sets?.toString() ?: "0"
-        holder.exerciseDesc.text = exercise.description ?: "No description"
+        holder.exerciseName.text = exercise.exerciseName
+        holder.exerciseReps.text = exercise.sets.toString()
+        holder.exerciseDesc.text = exercise.description
 
         // Edit button launches UpdateExerciseActivity
         holder.btnEdit.setOnClickListener {
@@ -70,7 +70,7 @@ class ExerciseAdapter(
             val intent = Intent(context, WorkOutDetailActivity::class.java).apply {
                 putExtra("EXERCISE_ID", exercise.exerciseId)
                 putExtra("EXERCISE_NAME", exercise.exerciseName)
-                putExtra("EXERCISE_REPS", exercise.sets?.toString())
+                putExtra("EXERCISE_REPS", exercise.sets.toString())
                 putExtra("EXERCISE_DESC", exercise.description)
                 putExtra("EXERCISE_IMAGE", exercise.imageUrl)
             }
@@ -100,6 +100,6 @@ class ExerciseAdapter(
     }
 
     fun getExerciseId(position: Int): String {
-        return data[position].exerciseId ?: ""
+        return data[position].exerciseId
     }
 }
