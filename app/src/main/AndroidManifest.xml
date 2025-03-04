@@ -3,30 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
-
     <application
         android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="jhigu Fitness"
         android:supportsRtl="true"
-        android:theme="@style/Theme.JHIGUFITNESS"
         tools:replace="android:fullBackupContent"
         tools:targetApi="31">
         <activity
-<<<<<<< HEAD
-
-            android:name=".ui.activity.ui.activity.AbsNavActivity"
-
-=======
-            android:name=".ui.activity.UpdateExerciseActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,9 +23,7 @@
             </intent-filter>
         </activity>
         <activity
->>>>>>> main
-            android:name=".ui.activity.AddExerciseActivity"
-
+            android:name=".SignupActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,173 +32,8 @@
             </intent-filter>
         </activity>
         <activity
-
-            android:name=".ui.activity.ui.activity.CalfActivity"
-
-            android:name=".ui.activity.WorkOutDetailActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.activity.UpdateWorkoutActivity"
-
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-
-            android:name=".ui.activity.ui.activity.LegsActivity"
-
-            android:name=".ui.activity.AddWorkoutActivity"
-
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-
-            android:name=".ui.activity.ui.activity.TricepsActivity"
-
-            android:name=".ui.activity.WorkoutDashboard"
+            android:name=".MainActivity"
             android:exported="false" />
-        <activity
-            android:name=".ui.activity.ui.activity.WeightActivity"
-
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-
-            android:name=".ui.activity.ui.activity.BicepsActivity"
-
-            android:name=".ui.activity.ExperienceActivity"
-
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-
-            android:name=".ui.activity.ui.activity.ShoulderActivity"
-
-            android:name=".ui.activity.GoalActivity"
->>>>>>> ca7ddb97d85e2c3eab436b8c8a1b7b5be613e613
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-
-            android:name=".ui.activity.ui.activity.BackActivity"
-
-            android:name=".ui.activity.ui.activity.MotivationActivity"
-
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-
-            android:name=".ui.activity.ui.activity.ChestActivity"
-
-            android:name=".ui.activity.ui.activity.GenderActivity"
->>>>>>> ca7ddb97d85e2c3eab436b8c8a1b7b5be613e613
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-
-            android:name=".ui.activity.ui.activity.AbsActivity"
-
-            android:name=".ui.activity.ui.activity.VerificationActivity"
-
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-
-            android:name=".ui.activity.ui.activity.AbsActivityy"
-
-            android:name=".ui.activity.SignUpActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity> <!-- Fix: Add the required android:value or android:resource -->
-        <meta-data
-            android:name="com.google.android.actions"
-            android:value="default_value" /> <!-- Add a default value here -->
-        <activity
-            android:name=".ui.activity.ui.activity.LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.activity.QuestionPage"
-
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.activity.ui.activity.NavigationActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.activity.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
