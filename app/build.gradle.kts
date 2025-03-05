@@ -2,7 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
+    id("kotlin-parcelize") // ✅ Fix: Enable Parcelize Plugin Properly
 }
+
 
 android {
     namespace = "com.example.jhigu_fitness"
@@ -32,12 +34,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17 // ✅ Use Java 17 for better performance
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
 }
 
@@ -60,24 +62,19 @@ dependencies {
     // Cloudinary
     implementation("com.cloudinary:cloudinary-android:2.1.0")
 
-    // Picasso
+    // Image Loading
     implementation("com.squareup.picasso:picasso:2.8")
 
-    // Testing
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-
-    // Mockito
+    // Mockito (for unit testing)
     testImplementation("org.mockito:mockito-core:5.6.0")
     testImplementation("org.mockito:mockito-inline:3.12.4")
-    androidTestImplementation("org.mockito:mockito-android:5.6.0") // Use mockito-android for Android tests
-    testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0") // Mockito Kotlin support
+    androidTestImplementation("org.mockito:mockito-android:5.6.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
 
-    // Coroutines Test (if you're using coroutines)
+    // Coroutines Test (if using Kotlin coroutines)
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
 
-    // AndroidX Test (optional, for better testing support)
+    // AndroidX Test
     androidTestImplementation("androidx.test:core:1.5.0")
     androidTestImplementation("androidx.test:runner:1.5.2")
     androidTestImplementation("androidx.test:rules:1.5.0")

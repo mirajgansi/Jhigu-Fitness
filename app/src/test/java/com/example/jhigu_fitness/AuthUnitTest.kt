@@ -35,6 +35,7 @@ class UserRepositoryImpTest {
     @Captor
     private lateinit var authCaptor: ArgumentCaptor<OnCompleteListener<AuthResult>>
 
+
     @Captor
     private lateinit var voidCaptor: ArgumentCaptor<OnCompleteListener<Void>>
 

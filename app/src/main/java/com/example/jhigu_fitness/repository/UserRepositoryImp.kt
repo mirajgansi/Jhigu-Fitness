@@ -8,7 +8,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 
-class UserRepositoryImp : UserRepository {
+class UserRepositoryImp(mockAuth: FirebaseAuth) : UserRepository {
     var auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     val database: FirebaseDatabase = FirebaseDatabase.getInstance()

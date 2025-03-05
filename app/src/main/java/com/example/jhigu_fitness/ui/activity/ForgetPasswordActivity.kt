@@ -11,6 +11,7 @@ import com.example.jhigu_fitness.databinding.ActivityForgotPasswordBinding
 import com.example.jhigu_fitness.repository.UserRepositoryImp
 import com.example.jhigu_fitness.utils.LoadingUtils
 import com.example.jhigu_fitness.viewmodel.UserViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 class ForgetPasswordActivity : AppCompatActivity() {
     lateinit var forgetPasswordBinding: ActivityForgotPasswordBinding
@@ -23,7 +24,9 @@ class ForgetPasswordActivity : AppCompatActivity() {
         setContentView(forgetPasswordBinding.root)
 
         //initializing auth viewmodel
-        var repo = UserRepositoryImp()
+        val mockAuth = FirebaseAuth.getInstance() // Example for Firebase Authentication
+
+        var repo = UserRepositoryImp(mockAuth)
         userViewModel = UserViewModel(repo)
 
         //initializing loading

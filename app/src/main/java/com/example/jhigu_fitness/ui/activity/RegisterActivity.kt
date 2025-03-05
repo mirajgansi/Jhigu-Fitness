@@ -8,12 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.a35b_crud.model.UserModel
-import com.example.jhigu_fitness.R
 import com.example.jhigu_fitness.databinding.ActivitySignUpBinding
 import com.example.jhigu_fitness.repository.UserRepositoryImp
 import com.example.jhigu_fitness.ui.activity.ui.activity.LoginActivity
 import com.example.jhigu_fitness.utils.LoadingUtils
 import com.example.jhigu_fitness.viewmodel.UserViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -26,8 +26,10 @@ class RegisterActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val mockAuth = FirebaseAuth.getInstance() // Example for Firebase Authentication
 
-        val userRepository = UserRepositoryImp()
+
+        val userRepository = UserRepositoryImp(mockAuth)
         userViewModel = UserViewModel(userRepository)
         loadingUtils = LoadingUtils(this)
 

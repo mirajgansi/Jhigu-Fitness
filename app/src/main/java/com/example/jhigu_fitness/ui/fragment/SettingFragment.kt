@@ -13,6 +13,7 @@ import com.example.jhigu_fitness.databinding.FragmentSettingBinding
 import com.example.jhigu_fitness.repository.UserRepositoryImp
 import com.example.jhigu_fitness.ui.activity.ui.activity.LoginActivity
 import com.example.jhigu_fitness.viewmodel.UserViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 class SettingFragment : Fragment() {
 
@@ -36,7 +37,9 @@ class SettingFragment : Fragment() {
         sharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
 
         // Initialize ViewModel and Repository
-        val repo = UserRepositoryImp()
+        val mockAuth = FirebaseAuth.getInstance() // Example for Firebase Authentication
+
+        val repo = UserRepositoryImp(mockAuth)
         userViewModel = UserViewModel(repo)
 
         // Fetch current user and load data

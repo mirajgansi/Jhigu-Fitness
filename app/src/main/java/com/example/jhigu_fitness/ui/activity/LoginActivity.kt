@@ -7,13 +7,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.jhigu_fitness.R
 import com.example.jhigu_fitness.databinding.ActivityLoginBinding
 import com.example.jhigu_fitness.repository.UserRepositoryImp
 import com.example.jhigu_fitness.ui.activity.ForgetPasswordActivity
 import com.example.jhigu_fitness.ui.activity.RegisterActivity
 import com.example.jhigu_fitness.utils.LoadingUtils
 import com.example.jhigu_fitness.viewmodel.UserViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
 
@@ -27,7 +27,9 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val repo = UserRepositoryImp()
+        val mockAuth = FirebaseAuth.getInstance() // Example for Firebase Authentication
+
+        val repo = UserRepositoryImp(mockAuth)
         userViewModel = UserViewModel(repo)
 
         // Initializing loading
